@@ -1,0 +1,17 @@
+2024/07/09-04:46:03.189 57f8 Reusing MANIFEST X:\VG\SOHO\perfil_usuario\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/07/09-04:46:03.190 57f8 Recovering log #543
+2024/07/09-04:46:03.195 57f8 Reusing old log X:\VG\SOHO\perfil_usuario\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000543.log 
+2024/07/09-04:46:04.397 784 Level-0 table #550: started
+2024/07/09-04:46:04.401 784 Level-0 table #550: 171243 bytes OK
+2024/07/09-04:46:04.402 784 Delete type=0 #543
+2024/07/09-04:46:04.402 784 Manual compaction at level-0 from '\x00\x92\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x93\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/07/09-04:46:05.541 57f8 Compacting 1@1 + 3@2 files
+2024/07/09-04:46:05.593 57f8 Generated table #551@1: 47508 keys, 2217272 bytes
+2024/07/09-04:46:05.639 57f8 Generated table #552@1: 59812 keys, 2199693 bytes
+2024/07/09-04:46:05.672 57f8 Generated table #553@1: 44786 keys, 1012456 bytes
+2024/07/09-04:46:05.672 57f8 Compacted 1@1 + 3@2 files => 5429421 bytes
+2024/07/09-04:46:05.672 57f8 compacted to: files[ 0 0 3 0 0 0 0 ]
+2024/07/09-04:46:05.673 57f8 Delete type=2 #545
+2024/07/09-04:46:05.673 57f8 Delete type=2 #546
+2024/07/09-04:46:05.673 57f8 Delete type=2 #547
+2024/07/09-04:46:05.673 57f8 Delete type=2 #550
