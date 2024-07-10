@@ -1,7 +1,7 @@
-[5652:13392:0709/044557.377:WARNING:chrome_main_delegate.cc(742)] This is Chrome version 126.0.6478.127 (not a warning)
-[5652:13392:0709/044557.438:INFO:chrome_browser_cloud_management_controller.cc(196)] No machine level policy manager exists.
-[5652:13392:0709/044557.462:WARNING:browser_management_service.cc(128)] EnterpriseLogoUrl fetch failed with error code -1 and MIME type 
-[5652:13392:0709/044603.048:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'battery'.", source:  (0)
-[5652:13392:0709/044603.048:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'usb-unrestricted'.", source:  (0)
-[5652:13392:0709/044603.167:INFO:CONSOLE(133)] "Event handler of 'x-storagemutated-1' event must be added on the initial evaluation of worker script.", source: https://static.whatsapp.net/rsrc.php/v3/y-/r/ChgVLi79b3U.js?_nc_x=Ij3Wp8lg5Kz (133)
-[5652:13392:0709/044629.058:WARNING:pref_notifier_impl.cc(41)] Pref observer for media_router.cast_allow_all_ips found at shutdown.
+[14588:16660:0709/210547.964:WARNING:chrome_main_delegate.cc(742)] This is Chrome version 126.0.6478.127 (not a warning)
+[14588:16660:0709/210548.031:INFO:chrome_browser_cloud_management_controller.cc(196)] No machine level policy manager exists.
+[14588:16660:0709/210548.057:WARNING:browser_management_service.cc(128)] EnterpriseLogoUrl fetch failed with error code -1 and MIME type 
+[14588:16660:0709/210553.644:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'battery'.", source:  (0)
+[14588:16660:0709/210553.644:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'usb-unrestricted'.", source:  (0)
+[14588:16660:0709/210553.751:INFO:CONSOLE(133)] "Event handler of 'x-storagemutated-1' event must be added on the initial evaluation of worker script.", source: https://static.whatsapp.net/rsrc.php/v3/yQ/r/T2PU7O6wWnc.js?_nc_x=Ij3Wp8lg5Kz (133)
+[14588:16660:0709/210830.520:ERROR:network_service_instance_impl.cc(600)] Network service crashed, restarting service.
