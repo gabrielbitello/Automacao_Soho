@@ -1,3 +1,3 @@
 @echo off
-python OA.py
+python Central_ofertas_ativas.py
 pause

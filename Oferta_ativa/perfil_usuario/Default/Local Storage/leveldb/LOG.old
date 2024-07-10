@@ -1,3 +1,5 @@
-2024/07/09-21:01:51.163 2f08 Reusing MANIFEST X:\VG\Automacao_Soho\Oferta_ativa\perfil_usuario\Default\Local Storage\leveldb/MANIFEST-000001
-2024/07/09-21:01:51.168 2f08 Recovering log #21
-2024/07/09-21:01:51.170 2f08 Reusing old log X:\VG\Automacao_Soho\Oferta_ativa\perfil_usuario\Default\Local Storage\leveldb/000021.log 
+2024/07/10-04:45:44.759 3e24 Reusing MANIFEST X:\VG\Automacao_Soho\Oferta_ativa\perfil_usuario\Default\Local Storage\leveldb/MANIFEST-000001
+2024/07/10-04:45:44.764 3e24 Recovering log #23
+2024/07/10-04:45:44.764 3e24 Level-0 table #26: started
+2024/07/10-04:45:44.769 3e24 Level-0 table #26: 13576 bytes OK
+2024/07/10-04:45:44.773 3e24 Delete type=0 #23
