@@ -41,6 +41,6 @@ def Mensagem(primeiro_nome, mensagem_oferta, nome_passou):
         "Hike": f"{saudacao()}, tudo bom {primeiro_nome}?\n\n{Base}\n\n{neutro_p1}\n\n{neutro_p2}\n\nAguardo seu retorno.\n\n{hike_mensagem}"
     }
 
-    print(mensagem_oferta)
+    print (f"Mensagem: {mensagem_oferta}")
 
     return switcher.get(mensagem_oferta, "Oferta inválida")

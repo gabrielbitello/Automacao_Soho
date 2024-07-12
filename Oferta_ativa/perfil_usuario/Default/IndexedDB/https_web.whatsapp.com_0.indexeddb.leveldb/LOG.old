@@ -1,19 +1,25 @@
-2024/07/10-04:45:50.418 5198 Reusing MANIFEST X:\VG\Automacao_Soho\Oferta_ativa\perfil_usuario\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2024/07/10-04:45:50.419 5198 Recovering log #879
-2024/07/10-04:45:50.427 5198 Reusing old log X:\VG\Automacao_Soho\Oferta_ativa\perfil_usuario\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000879.log 
-2024/07/10-04:45:50.636 5eb4 Level-0 table #887: started
-2024/07/10-04:45:50.642 5eb4 Level-0 table #887: 309346 bytes OK
-2024/07/10-04:45:50.643 5eb4 Delete type=0 #879
-2024/07/10-04:45:50.644 4008 Manual compaction at level-0 from '\x00\xc8\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\xc9\x00\x00\x00' @ 0 : 0; will stop at (end)
-2024/07/10-04:45:51.840 5198 Compacting 1@1 + 4@2 files
-2024/07/10-04:45:51.905 5198 Generated table #888@1: 75642 keys, 2344867 bytes
-2024/07/10-04:45:51.946 5198 Generated table #889@1: 23792 keys, 2209979 bytes
-2024/07/10-04:45:52.001 5198 Generated table #890@1: 80219 keys, 2224543 bytes
-2024/07/10-04:45:52.017 5198 Generated table #891@1: 24942 keys, 566801 bytes
-2024/07/10-04:45:52.017 5198 Compacted 1@1 + 4@2 files => 7346190 bytes
-2024/07/10-04:45:52.018 5198 compacted to: files[ 0 0 4 0 0 0 0 ]
-2024/07/10-04:45:52.018 5198 Delete type=2 #881
-2024/07/10-04:45:52.018 5198 Delete type=2 #882
-2024/07/10-04:45:52.018 5198 Delete type=2 #883
-2024/07/10-04:45:52.018 5198 Delete type=2 #884
-2024/07/10-04:45:52.018 5198 Delete type=2 #887
+2024/07/12-08:05:48.567 5014 Reusing MANIFEST X:\VG\Automacao_Soho\Oferta_ativa\perfil_usuario\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/07/12-08:05:48.570 5014 Recovering log #1278
+2024/07/12-08:05:48.696 5014 Reusing old log X:\VG\Automacao_Soho\Oferta_ativa\perfil_usuario\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/001278.log 
+2024/07/12-08:05:51.052 3b80 Level-0 table #1289: started
+2024/07/12-08:06:02.794 3b80 Level-0 table #1289: 607695 bytes OK
+2024/07/12-08:06:02.809 3b80 Delete type=0 #1278
+2024/07/12-08:06:02.810 3b80 Manual compaction at level-0 from '\x00\xe6\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\xe7\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/07/12-08:06:04.626 5d2c Compacting 1@1 + 7@2 files
+2024/07/12-08:06:06.667 5d2c Generated table #1290@1: 86868 keys, 2236961 bytes
+2024/07/12-08:06:08.782 5d2c Generated table #1291@1: 87518 keys, 2318905 bytes
+2024/07/12-08:06:10.523 5d2c Generated table #1292@1: 8132 keys, 2713731 bytes
+2024/07/12-08:06:11.475 5d2c Generated table #1293@1: 18573 keys, 2178451 bytes
+2024/07/12-08:06:13.719 5d2c Generated table #1294@1: 14311 keys, 2154133 bytes
+2024/07/12-08:06:14.391 5d2c Generated table #1295@1: 93625 keys, 2241065 bytes
+2024/07/12-08:06:14.602 5d2c Generated table #1296@1: 84976 keys, 2041828 bytes
+2024/07/12-08:06:14.602 5d2c Compacted 1@1 + 7@2 files => 15885074 bytes
+2024/07/12-08:06:14.603 5d2c compacted to: files[ 0 0 7 0 0 0 0 ]
+2024/07/12-08:06:14.603 5d2c Delete type=2 #1280
+2024/07/12-08:06:14.603 5d2c Delete type=2 #1281
+2024/07/12-08:06:14.604 5d2c Delete type=2 #1282
+2024/07/12-08:06:14.604 5d2c Delete type=2 #1283
+2024/07/12-08:06:14.604 5d2c Delete type=2 #1284
+2024/07/12-08:06:14.604 5d2c Delete type=2 #1285
+2024/07/12-08:06:14.604 5d2c Delete type=2 #1286
+2024/07/12-08:06:14.604 5d2c Delete type=2 #1289

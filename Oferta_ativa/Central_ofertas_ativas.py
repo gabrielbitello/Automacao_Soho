@@ -78,15 +78,15 @@ crmx.find_element(By.XPATH, '//*[@id="lista-campanha"]/div/div/div[2]/ul[1]/li[1
 
 # Loop principal
 while True:
-    resultado_ofertas_ativas = funcoes.buscar_ofertas_ativas()  # Armazena o resultado para evitar múltiplas chamadas
+    funcoes.buscar_ofertas_ativas()  # Armazena o resultado para evitar múltiplas chamadas
 
-    if resultado_ofertas_ativas[0] == 0:
-        print(f"Existem {resultado_ofertas_ativas[1]} ofertas ativas. Iniciando o processo de contato...")
-        envio_de_mensagens.contato_oferta_ativa(resultado_ofertas_ativas[1], funcoes.Mensagem_ofertas_ativas(), whatsapp, crmx)
+    if funcoes.buscar_ofertas_ativas()[0] == 1:
+        print(f"Existem {funcoes.buscar_ofertas_ativas()[1]} ofertas ativas. Iniciando o processo de contato...")
+        envio_de_mensagens.contato_oferta_ativa(funcoes.buscar_ofertas_ativas()[1], funcoes.Mensagem_ofertas_ativas(), whatsapp, crmx)
         funcoes.atualizar_h_termino()
     else:
-        if resultado_ofertas_ativas[0] == 1:
-            envio_de_mensagem_expecifica.contato_mensagem(resultado_ofertas_ativas[1], resultado_ofertas_ativas[2], resultado_ofertas_ativas[3], funcoes.
+        if funcoes.buscar_ofertas_ativas()[0] == 2:
+            envio_de_mensagem_expecifica.contato_mensagem(funcoes.buscar_ofertas_ativas()[1], funcoes.buscar_ofertas_ativas()[2], funcoes.buscar_ofertas_ativas()[3], funcoes.
             Mensagem_ofertas_ativas(), whatsapp)
             funcoes.atualizar_h_termino()
         else:

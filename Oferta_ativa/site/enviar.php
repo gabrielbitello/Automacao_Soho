@@ -1,11 +1,6 @@
 <?php
-// Conectar ao banco de dados
-$conn = new mysqli($host, $username, $password, $dbname);
+include 'config.php'; // Incluir o arquivo de configuração
 
-// Verificar conexão
-if ($conn->connect_error) {
-    die("Falha na conexão: " . $conn->connect_error);
-}
 
 // Definir o fuso horário de São Paulo
 date_default_timezone_set('America/Sao_Paulo');
@@ -27,7 +22,7 @@ $ativa = 1;
 $h_registro = date('Y-m-d H:i:s'); // Data e hora atual no formato MySQL
 
 // Vincular parâmetros
-$stmt->bind_param("iiss", $total, $ativa, $mensagem, $h_registro);
+$stmt->bind_param("iiss", $total, $ativa, $mensagem, $h_registro, );
 
 // Executar a query
 if ($stmt->execute()) {

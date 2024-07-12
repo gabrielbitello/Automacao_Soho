@@ -12,7 +12,8 @@ import Mensagem
 
 
 def contato_oferta_ativa(loop, mensagem_oferta, whatsapp, crmx):
-    n_loop = loop
+    n_loop = int(loop)
+    print (loop)
     # Inicia o processo de contato
     while n_loop > 0:
 
@@ -34,9 +35,12 @@ def contato_oferta_ativa(loop, mensagem_oferta, whatsapp, crmx):
 
         numero_formatado = funcoes.formatar_telefone(numero_cliente)
 
+        nome = nome_cliente.split(" ")[0]
+        primeiro_nome = funcoes.remover_caracteres_nao_alfabeticos(nome)
+        
+        print(f"Nome: {primeiro_nome}")
+        
         print(f"Telefone: {numero_formatado}")
-
-        primeiro_nome = nome_cliente.split(" ")[0]
 
         # --------------------------------------------
 
@@ -56,11 +60,11 @@ def contato_oferta_ativa(loop, mensagem_oferta, whatsapp, crmx):
 
             try:
 
-                mensagem = Mensagem.Mensagem(primeiro_nome, mensagem_oferta)
+                mensagem = Mensagem.Mensagem(primeiro_nome, mensagem_oferta, 0)
 
                 time.sleep(round(random.uniform(3, 5), 1))
 
-                whatsapp.find_element(By.XPATH, '//*[@id="app"]/div/div[2]/div[2]/div[1]/span/div/span/div/div[2]/div/div/div/div[2]/div').click()
+                whatsapp.find_element(By.XPATH, '//*[@id="app"]/div/div[2]/div[2]/div[1]/span/div/span/div/div[2]/div[2]').click()
 
                 time.sleep(round(random.uniform(3, 5), 1))
 
@@ -90,14 +94,17 @@ def contato_oferta_ativa(loop, mensagem_oferta, whatsapp, crmx):
                 # Se o elemento não for encontrado, entra no except
                 opcao_select = "Telefone Inválido"
                 funcoes.cadastrar_cliente(nome_cliente, primeiro_nome, numero_cliente, numero_formatado, 0, mensagem)
+                whatsapp.find_element(By.XPATH, '//*[@id="app"]/div/div[2]/div[2]/div[1]/span/div/span/div/header/div/div[1]/div/span').click()
 
             # --------------------------------------------
 
-            status_contato = crmx.find_element(By.XPATH, '//*[@id="status"]')  # Corrige o status do contato select
-            select = Select(status_contato)  # Seleciona o <select>
-            select.select_by_visible_text(opcao_select)  # Seleciona a opção do select
+        status_contato = crmx.find_element(By.XPATH, '//*[@id="status"]')  # Corrige o status do contato select
+        select = Select(status_contato)  # Seleciona o <select>
+        select.select_by_visible_text(opcao_select)  # Seleciona a opção do select
 
-            crmx.find_element(By.XPATH, '/html/body/div[13]/div[2]/div[2]/div[2]/form/div[2]/div/div[3]/div/div[1]/button').click()  # Salva o status do contato
+        crmx.find_element(By.XPATH, '/html/body/div[13]/div[2]/div[2]/div[2]/form/div[2]/div/div[3]/div/div[1]/button').click()  # Salva o status do contato
 
         print("Executando a oferta ativa")
-        n_loop -= 1
+        print(f"x antes: {n_loop}")
+        n_loop = n_loop - 1
+        print(f"x depos: {n_loop}")

@@ -66,14 +66,17 @@ def clique_e_envie(nav2, xpath, texto, enter=False, simular_shift_enter=False):
 def buscar_ofertas_ativas():
     with conexao.cursor() as cursor:
         # Query SQL para buscar o número de ofertas ativas
-        sql = "SELECT COUNT(*) AS total, pessoa, numero, nome_pessoa, nome_passou FROM soho_geral.ofertas_ativa WHERE ativa = 1 LIMIT 1"
+        sql = "SELECT total, pessoa, numero, nome_pessoa, nome_passou FROM soho_geral.ofertas_ativa WHERE ativa = 1 LIMIT 1"
         cursor.execute(sql)
         resultado = cursor.fetchone()
         pessoa = resultado['pessoa']
         if pessoa == 1:
-            return (1, resultado['numero'], resultado['nome_pessoa'], resultado['nome_passou'])
+            return (2, resultado['numero'], resultado['nome_pessoa'], resultado['nome_passou'])
         else:
-            return (0, resultado['total'])
+            if pessoa == 0:
+                return (1, resultado['total'])
+            else:
+                return (0, 0)
 
 def Mensagem_ofertas_ativas():
     with conexao.cursor() as cursor:
@@ -116,14 +119,13 @@ def cadastrar_cliente(nome, nome_f, numero, numero_f, status, mensagem):
 
 def verificar_numero_existente(numero):
     with conexao.cursor() as cursor:
-        # Query SQL para verificar a existência do número e recuperar a data mais recente
-        sql = "SELECT MAX(Data, Retorno) AS Data, Retorno FROM soho_geral.oferta_ativa_Clientes WHERE Numero = %s GROUP BY Numero"
-        cursor.execute(sql, (numero,))
-        resultado = cursor.fetchone()
+        # Primeiro, buscar a data máxima
+        sql_data = "SELECT MAX(Data) AS Data FROM soho_geral.oferta_ativa_Clientes WHERE Numero = %s"
+        cursor.execute(sql_data, (numero,))
+        resultado_data = cursor.fetchone()
         
-        # Verifica se o número já existe
-        if resultado is not None and resultado['Data'] is not None:
-            ultima_data = resultado['Data']
+        if resultado_data is not None and resultado_data['Data'] is not None:
+            ultima_data = resultado_data['Data']
             # Converte a data de string para datetime, assumindo que ultima_data é uma string no formato '%Y-%m-%d %H:%M:%S'
             ultima_data = datetime.strptime(ultima_data, '%Y-%m-%d %H:%M:%S')
             # Calcula a data 30 dias atrás a partir de hoje
@@ -131,11 +133,23 @@ def verificar_numero_existente(numero):
             
             # Verifica se a última data registrada é menor que a data 30 dias atrás
             if ultima_data < trinta_dias_atras:
-                if resultado['Retorno'] < 1:
-                    return True  # O número existe, mas a última data registrada tem mais de 30 dias, e não esta bloquado o envio de mensagem
-                else:
-                    return False  # O número existe, mas a última data registrada tem mais de 30 dias, e esta bloquado o envio de mensagem
+                # Segundo, buscar o retorno máximo para a data máxima encontrada
+                sql_retorno = "SELECT MAX(Retorno) AS Retorno FROM soho_geral.oferta_ativa_Clientes WHERE Numero = %s"
+                cursor.execute(sql_retorno, (numero))
+                resultado_retorno = cursor.fetchone()
+                
+                if resultado_retorno is not None and resultado_retorno['Retorno'] is not None:
+                    if resultado_retorno['Retorno'] < 1:
+                        return False  # O número existe, mas a última data registrada tem mais de 30 dias, e não está bloqueado o envio de mensagem
+                    else:
+                        return True  # O número existe, mas a última data registrada tem mais de 30 dias, e está bloqueado o envio de mensagem
             else:
-                return False  # O número existe e a última data registrada é recente (menos de 30 dias)
+                return True  # O número existe e a última data registrada é recente (menos de 30 dias)
         else:
-            return True  # O número não existe
+            return False  # O número não existe
+
+def remover_caracteres_nao_alfabeticos(nome):
+    # Mantém apenas letras (com ou sem acentos)
+    nome_limpo = re.sub(r'[^\wáéíóúÁÉÍÓÚàèìòùÀÈÌÒÙäëïöüÄËÏÖÜãñõÃÑÕ]', '', nome)
+    return nome_limpo
+
