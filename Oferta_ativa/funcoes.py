@@ -69,6 +69,8 @@ def buscar_ofertas_ativas():
         sql = "SELECT total, pessoa, numero, nome_pessoa, nome_passou FROM soho_geral.ofertas_ativa WHERE ativa = 1 LIMIT 1"
         cursor.execute(sql)
         resultado = cursor.fetchone()
+        if resultado is None:
+            return (0, 0)  # Ou qualquer outro valor que indique que nenhum resultado foi encontrado
         pessoa = resultado['pessoa']
         if pessoa == 1:
             return (2, resultado['numero'], resultado['nome_pessoa'], resultado['nome_passou'])
@@ -120,32 +122,52 @@ def cadastrar_cliente(nome, nome_f, numero, numero_f, status, mensagem):
 def verificar_numero_existente(numero):
     with conexao.cursor() as cursor:
         # Primeiro, buscar a data máxima
-        sql_data = "SELECT MAX(Data) AS Data FROM soho_geral.oferta_ativa_Clientes WHERE Numero = %s"
+        sql_data = "SELECT MAX(Data) AS Data FROM soho_geral.oferta_ativa_Clientes WHERE Numero_F = %s"
         cursor.execute(sql_data, (numero,))
         resultado_data = cursor.fetchone()
+
+        print(f"Resultado da busca da data: {resultado_data}")
         
         if resultado_data is not None and resultado_data['Data'] is not None:
             ultima_data = resultado_data['Data']
-            # Converte a data de string para datetime, assumindo que ultima_data é uma string no formato '%Y-%m-%d %H:%M:%S'
-            ultima_data = datetime.strptime(ultima_data, '%Y-%m-%d %H:%M:%S')
+            # Debug: imprimir a última data obtida
+            print(f"Última data obtida do banco de dados: {ultima_data}")
+            try:
+                # Converte a data de string para datetime
+                ultima_data_f = datetime.strptime(ultima_data, '%Y-%m-%d %H:%M:%S')
+            except ValueError as e:
+                # Debug: em caso de erro na conversão, imprimir o erro
+                print(f"Erro na conversão da data: {e}")
+                return True  # Retorna True para evitar enviar a mensagem
+
+            # Debug: imprimir a data convertida
+            print(f"Última data convertida para datetime: {ultima_data_f}")
+            
             # Calcula a data 30 dias atrás a partir de hoje
             trinta_dias_atras = datetime.now() - timedelta(days=30)
+            # Debug: imprimir a data de 30 dias atrás
+            print(f"Data de 30 dias atrás: {trinta_dias_atras}")
             
             # Verifica se a última data registrada é menor que a data 30 dias atrás
-            if ultima_data < trinta_dias_atras:
-                # Segundo, buscar o retorno máximo para a data máxima encontrada
-                sql_retorno = "SELECT MAX(Retorno) AS Retorno FROM soho_geral.oferta_ativa_Clientes WHERE Numero = %s"
-                cursor.execute(sql_retorno, (numero))
+            if ultima_data_f < trinta_dias_atras:
+                print("A última data registrada é menor que a data de 30 dias atrás.")
+                sql_retorno = "SELECT MAX(Retorno) AS Retorno FROM soho_geral.oferta_ativa_Clientes WHERE Numero_F = %s"
+                cursor.execute(sql_retorno, (numero,))
                 resultado_retorno = cursor.fetchone()
                 
                 if resultado_retorno is not None and resultado_retorno['Retorno'] is not None:
-                    if resultado_retorno['Retorno'] < 1:
-                        return False  # O número existe, mas a última data registrada tem mais de 30 dias, e não está bloqueado o envio de mensagem
+                    # Debug: imprimir o valor do retorno
+                    print(f"Valor do retorno: {resultado_retorno['Retorno']}")
+                    if resultado_retorno['Retorno'] == 0:
+                        print("Retorno é 0. Pode enviar mensagem.")
+                        return False  # O número existe, e a última data registrada tem mais de 30 dias, e não está bloqueado o envio de mensagem
                     else:
-                        return True  # O número existe, mas a última data registrada tem mais de 30 dias, e está bloqueado o envio de mensagem
+                        print("Retorno é diferente de 0. Não pode enviar mensagem.")
+                        return True  # O número existe, e a última data registrada tem mais de 30 dias, e está bloqueado o envio de mensagem
             else:
-                return True  # O número existe e a última data registrada é recente (menos de 30 dias)
+                return True  # O número existe, mas a última data registrada tem menos de 30 dias
         else:
+            print("O número não existe.")
             return False  # O número não existe
 
 def remover_caracteres_nao_alfabeticos(nome):

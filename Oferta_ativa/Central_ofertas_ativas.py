@@ -78,7 +78,6 @@ crmx.find_element(By.XPATH, '//*[@id="lista-campanha"]/div/div/div[2]/ul[1]/li[1
 
 # Loop principal
 while True:
-    funcoes.buscar_ofertas_ativas()  # Armazena o resultado para evitar múltiplas chamadas
 
     if funcoes.buscar_ofertas_ativas()[0] == 1:
         print(f"Existem {funcoes.buscar_ofertas_ativas()[1]} ofertas ativas. Iniciando o processo de contato...")

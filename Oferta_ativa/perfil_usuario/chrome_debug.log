@@ -1,7 +1,7 @@
-[20644:16276:0712/080942.939:WARNING:chrome_main_delegate.cc(742)] This is Chrome version 126.0.6478.127 (not a warning)
-[20644:16276:0712/080943.001:INFO:chrome_browser_cloud_management_controller.cc(196)] No machine level policy manager exists.
-[20644:16276:0712/080943.032:WARNING:browser_management_service.cc(128)] EnterpriseLogoUrl fetch failed with error code -1 and MIME type 
-[20644:16276:0712/080948.803:INFO:CONSOLE(133)] "Event handler of 'x-storagemutated-1' event must be added on the initial evaluation of worker script.", source: https://static.whatsapp.net/rsrc.php/v3/y0/r/ojwrKjOxX58.js?_nc_x=Ij3Wp8lg5Kz (133)
-[20644:16276:0712/080948.941:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'battery'.", source:  (0)
-[20644:16276:0712/080948.941:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'usb-unrestricted'.", source:  (0)
-[20644:16276:0712/082035.101:WARNING:pref_notifier_impl.cc(41)] Pref observer for media_router.cast_allow_all_ips found at shutdown.
+[28224:14536:0718/195741.557:WARNING:chrome_main_delegate.cc(742)] This is Chrome version 126.0.6478.127 (not a warning)
+[28224:14536:0718/195741.637:INFO:chrome_browser_cloud_management_controller.cc(196)] No machine level policy manager exists.
+[28224:14536:0718/195741.667:WARNING:browser_management_service.cc(128)] EnterpriseLogoUrl fetch failed with error code -1 and MIME type 
+[28224:14536:0718/195747.303:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'battery'.", source:  (0)
+[28224:14536:0718/195747.303:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'usb-unrestricted'.", source:  (0)
+[28224:14536:0718/195747.389:INFO:CONSOLE(133)] "Event handler of 'x-storagemutated-1' event must be added on the initial evaluation of worker script.", source: https://static.whatsapp.net/rsrc.php/v3/y1/r/mUsyuKSZerv.js?_nc_x=Ij3Wp8lg5Kz (133)
+[28224:14536:0718/203548.911:WARNING:pref_notifier_impl.cc(41)] Pref observer for media_router.cast_allow_all_ips found at shutdown.

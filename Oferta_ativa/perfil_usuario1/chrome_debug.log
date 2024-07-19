@@ -1,11 +1,11 @@
-[19560:16120:0712/080959.106:WARNING:chrome_main_delegate.cc(742)] This is Chrome version 126.0.6478.127 (not a warning)
-[19560:16120:0712/080959.184:INFO:chrome_browser_cloud_management_controller.cc(196)] No machine level policy manager exists.
-[19560:16120:0712/080959.210:WARNING:browser_management_service.cc(128)] EnterpriseLogoUrl fetch failed with error code -1 and MIME type 
-[19560:16120:0712/081005.493:INFO:CONSOLE(0)] "[DOM] Input elements should have autocomplete attributes (suggested: "new-password"): (More info: https://goo.gl/9p2vKq) %o", source: https://crmx.novovista.com.br/ (0)
-[19560:16120:0712/081005.494:INFO:CONSOLE(0)] "[DOM] Input elements should have autocomplete attributes (suggested: "new-password"): (More info: https://goo.gl/9p2vKq) %o", source: https://crmx.novovista.com.br/ (0)
-[19560:16120:0712/081005.965:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'battery'.", source:  (0)
-[19560:16120:0712/081005.965:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'usb-unrestricted'.", source:  (0)
-[19560:16120:0712/081022.771:INFO:CONSOLE(45362)] "Deprecation warning: value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date(), which is not reliable across all browsers and versions. Non RFC2822/ISO date formats are discouraged. Please refer to http://momentjs.com/guides/#/warnings/js-date/ for more info.
+[22544:10272:0718/195756.995:WARNING:chrome_main_delegate.cc(742)] This is Chrome version 126.0.6478.127 (not a warning)
+[22544:10272:0718/195757.048:INFO:chrome_browser_cloud_management_controller.cc(196)] No machine level policy manager exists.
+[22544:10272:0718/195757.074:WARNING:browser_management_service.cc(128)] EnterpriseLogoUrl fetch failed with error code -1 and MIME type 
+[22544:10272:0718/195803.240:INFO:CONSOLE(0)] "[DOM] Input elements should have autocomplete attributes (suggested: "new-password"): (More info: https://goo.gl/9p2vKq) %o", source: https://crmx.novovista.com.br/ (0)
+[22544:10272:0718/195803.240:INFO:CONSOLE(0)] "[DOM] Input elements should have autocomplete attributes (suggested: "new-password"): (More info: https://goo.gl/9p2vKq) %o", source: https://crmx.novovista.com.br/ (0)
+[22544:10272:0718/195803.471:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'battery'.", source:  (0)
+[22544:10272:0718/195803.471:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'usb-unrestricted'.", source:  (0)
+[22544:10272:0718/195819.430:INFO:CONSOLE(45362)] "Deprecation warning: value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date(), which is not reliable across all browsers and versions. Non RFC2822/ISO date formats are discouraged. Please refer to http://momentjs.com/guides/#/warnings/js-date/ for more info.
 Arguments: 
 [0] _isAMomentObject: true, _isUTC: false, _useUTC: false, _l: undefined, _i: function Vue(options) {
     if (!(this instanceof Vue)) {
@@ -24,13 +24,13 @@ Error
     at Vue.use (https://crmx.novovista.com.br/components/dist/js/notificacao.js:62629:20)
     at ./components/src/js/notificacao/app.js (https://crmx.novovista.com.br/components/dist/js/notificacao.js:148:44)
     at __webpack_require__ (https://crmx.novovista.com.br/components/dist/js/notificacao.js:20:30)", source: https://crmx.novovista.com.br/components/dist/js/notificacao.js (45362)
-[19560:16120:0712/081022.771:INFO:CONSOLE(4554)] "Download the Apollo DevTools for a better development experience: https://chrome.google.com/webstore/detail/apollo-client-developer-t/jdkknkkbebbapilgoeccciglkfbmbnfm", source: https://crmx.novovista.com.br/components/dist/js/notificacao.js (4554)
-[19560:16120:0712/081022.787:INFO:CONSOLE(66144)] "Download the Vue Devtools extension for a better development experience:
+[22544:10272:0718/195819.432:INFO:CONSOLE(4554)] "Download the Apollo DevTools for a better development experience: https://chrome.google.com/webstore/detail/apollo-client-developer-t/jdkknkkbebbapilgoeccciglkfbmbnfm", source: https://crmx.novovista.com.br/components/dist/js/notificacao.js (4554)
+[22544:10272:0718/195819.462:INFO:CONSOLE(66144)] "Download the Vue Devtools extension for a better development experience:
 https://github.com/vuejs/vue-devtools", source: https://crmx.novovista.com.br/components/dist/js/notificacao.js (66144)
-[19560:16120:0712/081022.787:INFO:CONSOLE(66151)] "You are running Vue in development mode.
+[22544:10272:0718/195819.462:INFO:CONSOLE(66151)] "You are running Vue in development mode.
 Make sure to turn on production mode when deploying for production.
 See more tips at https://vuejs.org/guide/deployment.html", source: https://crmx.novovista.com.br/components/dist/js/notificacao.js (66151)
-[19560:16120:0712/081023.132:INFO:CONSOLE(6)] "Deprecation warning: value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date(), which is not reliable across all browsers and versions. Non RFC2822/ISO date formats are discouraged and will be removed in an upcoming major release. Please refer to http://momentjs.com/guides/#/warnings/js-date/ for more info.
+[22544:10272:0718/195819.908:INFO:CONSOLE(6)] "Deprecation warning: value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date(), which is not reliable across all browsers and versions. Non RFC2822/ISO date formats are discouraged and will be removed in an upcoming major release. Please refer to http://momentjs.com/guides/#/warnings/js-date/ for more info.
 Arguments: 
 [0] _isAMomentObject: true, _isUTC: false, _useUTC: false, _l: undefined, _i: 01/01/2000, _f: undefined, _strict: undefined, _locale: [object Object]
 Error
@@ -44,10 +44,10 @@ Error
     at a (https://cdn.jsdelivr.net/momentjs/latest/moment.min.js:6:202)
     at eval (eval at globalEval (https://crmx.novovista.com.br/res/js/datatables.js:14:2640), <anonymous>:110:22)
     at eval (<anonymous>)", source: https://cdn.jsdelivr.net/momentjs/latest/moment.min.js (6)
-[19560:16120:0712/081023.771:INFO:CONSOLE(10136)] "Download the Vue Devtools extension for a better development experience:
+[22544:10272:0718/195820.354:INFO:CONSOLE(10136)] "Download the Vue Devtools extension for a better development experience:
 https://github.com/vuejs/vue-devtools", source: https://crmx.novovista.com.br/components/dist/js/acessibilidade-fontes.js (10136)
-[19560:16120:0712/081023.771:INFO:CONSOLE(10143)] "You are running Vue in development mode.
+[22544:10272:0718/195820.354:INFO:CONSOLE(10143)] "You are running Vue in development mode.
 Make sure to turn on production mode when deploying for production.
 See more tips at https://vuejs.org/guide/deployment.html", source: https://crmx.novovista.com.br/components/dist/js/acessibilidade-fontes.js (10143)
-[19560:16120:0712/081028.974:INFO:CONSOLE(1)] "Uncaught SyntaxError: Unexpected token ')'", source: https://crmx.novovista.com.br/vista (1)
-[19560:16120:0712/082037.256:WARNING:pref_notifier_impl.cc(41)] Pref observer for media_router.cast_allow_all_ips found at shutdown.
+[22544:10272:0718/195827.427:INFO:CONSOLE(1)] "Uncaught SyntaxError: Unexpected token ')'", source: https://crmx.novovista.com.br/vista (1)
+[22544:10272:0718/203547.783:WARNING:pref_notifier_impl.cc(41)] Pref observer for media_router.cast_allow_all_ips found at shutdown.

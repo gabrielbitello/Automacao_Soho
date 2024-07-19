@@ -39,43 +39,50 @@ nav div:last-child a {
     font-weight: bold;
 } */
 
-main {
-    padding: 20px;
-    width: 90%;
-    max-width: 500px; /* Ajuste conforme necessário */
-}
-
 form {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Espaçamento entre os elementos do formulário */
+    gap: 10px;
+    width: 100%;
+    max-width: 26vw; /* Ajuste conforme necessário */
+    margin: 20px 6vw;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra suave para o formulário */
+    border-radius: 8px; /* Bordas arredondadas */
 }
 
-select {
+form select, form input[type="number"], form input[type="text"], form input[type="checkbox"], form button {
     padding: 10px;
-    border: 1px solid #3d405b; /* Cor da borda */
-    border-radius: 5px; /* Bordas arredondadas */
-    background-color: #ffffff; /* Cor de fundo */
-    color: #3d405b; /* Cor do texto */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte */
-    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    margin: 5px 0; /* Espaçamento vertical */
+    border: 1px solid #ccc; /* Borda */
+    border-radius: 4px; /* Bordas arredondadas */
+    box-sizing: border-box; /* Garante que padding não afete a largura definida */
 }
 
-select:hover {
-    background-color: #f2cc8f; /* Cor de fundo ao passar o mouse */
+form input[type="checkbox"] {
+    margin-top: 15px; /* Espaçamento extra para separar do elemento acima */
+    padding: 0; /* Reset do padding para checkboxes */
 }
 
-select:focus {
-    outline: none; /* Remove o contorno padrão ao focar */
-    border-color: #81b29a; /* Cor da borda ao focar */
+form input[type="text"] {
+    display: none; /* Mantém os inputs de texto ocultos inicialmente */
 }
 
-input[type="number"] {
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+form button {
+    background-color: #4CAF50; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    border: none; /* Remove a borda */
+    cursor: pointer; /* Muda o cursor para indicar clicabilidade */
+    transition: background-color 0.3s; /* Transição suave para hover */
+}
+
+form button:hover {
+    background-color: #45a049; /* Cor de fundo ao passar o mouse */
+}
+
+/* Estilos específicos para inputs de texto quando visíveis */
+form input[type="text"][style*="display: block"] {
+    display: block; /* Garante que o input seja mostrado quando necessário */
 }
 
 button {

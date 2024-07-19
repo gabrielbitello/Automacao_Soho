@@ -1,3 +1,6 @@
-2024/07/12-08:09:43.137 41f4 Reusing MANIFEST X:\VG\Automacao_Soho\Oferta_ativa\perfil_usuario\Default\Local Storage\leveldb/MANIFEST-000001
-2024/07/12-08:09:43.143 41f4 Recovering log #42
-2024/07/12-08:09:43.146 41f4 Reusing old log X:\VG\Automacao_Soho\Oferta_ativa\perfil_usuario\Default\Local Storage\leveldb/000042.log 
+2024/07/18-19:57:41.738 6248 Reusing MANIFEST X:\VG\Automacao_Soho\Oferta_ativa\perfil_usuario\Default\Local Storage\leveldb/MANIFEST-000001
+2024/07/18-19:57:41.744 6248 Recovering log #62
+2024/07/18-19:57:41.747 6248 Reusing old log X:\VG\Automacao_Soho\Oferta_ativa\perfil_usuario\Default\Local Storage\leveldb/000062.log 
+2024/07/18-20:25:47.306 6df0 Level-0 table #66: started
+2024/07/18-20:25:47.309 6df0 Level-0 table #66: 15824 bytes OK
+2024/07/18-20:25:47.310 6df0 Delete type=0 #62
