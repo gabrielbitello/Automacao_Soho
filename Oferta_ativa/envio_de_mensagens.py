@@ -51,7 +51,7 @@ def contato_oferta_ativa(loop, mensagem_oferta, whatsapp, crmx):
 
             time.sleep(round(random.uniform(3, 5), 1))
 
-            whatsapp.find_element(By.XPATH, '/html/body/div[1]/div/div/div[2]/div[3]/header/div[2]/div/span/div[5]/div').click()  # Clica no ícone de nova mensagem
+            whatsapp.find_element(By.XPATH, '/html/body/div[1]/div/div/div[2]/div[3]/header/header/div/span/div/span/div[1]/div').click()  # Clica no ícone de nova mensagem
 
             time.sleep(round(random.uniform(2, 3), 1))
 
@@ -71,7 +71,7 @@ def contato_oferta_ativa(loop, mensagem_oferta, whatsapp, crmx):
                 pyperclip.copy(mensagem)
 
                 # Encontra o campo de mensagem
-                campo_mensagem = whatsapp.find_element(By.XPATH, '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[1]')
+                campo_mensagem = whatsapp.find_element(By.XPATH, '/html/body/div[1]/div/div/div[2]/div[4]/div/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[1]')
 
                 # Clica no campo de mensagem para garantir que ele está focado
                 campo_mensagem.click()
