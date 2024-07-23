@@ -74,8 +74,6 @@ time.sleep(2)
 crmx.find_element(By.XPATH, '//*[@id="lista-campanha"]/div/div/div[2]/ul[1]/li[1]/a').click() #seleciona a lista de lead
 
 
-
-
 # Loop principal
 while True:
 

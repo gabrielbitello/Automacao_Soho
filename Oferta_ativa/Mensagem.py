@@ -1,6 +1,6 @@
 import time
 
-Base = "Meu nome é Gabriel e sou corretor de imóveis na Prime Soho. Recentemente, você forneceu suas informações de contato em resposta a um anúncio imobiliário."
+Base = "Meu nome é Gabriel e sou Consultor imobiliário na Prime Soho. Recentemente, você forneceu suas informações de contato em resposta a um anúncio imobiliário."
 
 poty_mensagem = (
     "Aproveitando o contato, gostaria de apresentar um lançamento da Piemont, chamado Poty. "
