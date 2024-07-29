@@ -1,0 +1,13 @@
+[6956:25036:0723/155028.543:WARNING:chrome_main_delegate.cc(742)] This is Chrome version 126.0.6478.183 (not a warning)
+[6956:25036:0723/155028.623:INFO:chrome_browser_cloud_management_controller.cc(196)] No machine level policy manager exists.
+[6956:25036:0723/155028.691:WARNING:browser_management_service.cc(128)] EnterpriseLogoUrl fetch failed with error code -1 and MIME type 
+[6956:25036:0723/155035.495:INFO:CONSOLE(35)] "[object Object]", source: chrome-extension://hndnabgpcmhdmaejoapophbidipmgnpb/dash/dash.js (35)
+[6956:25036:0723/155035.845:INFO:CONSOLE(35)] "[object Object]", source: chrome-extension://hndnabgpcmhdmaejoapophbidipmgnpb/dash/dash.js (35)
+[6956:25036:0723/155036.848:ERROR:device_event_log_impl.cc(196)] [15:50:36.847] USB: usb_service_win.cc:105 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: Elemento não encontrado. (0x490)
+[6956:8768:0723/155043.631:WARNING:page_discarding_helper.cc(131)] Discarding multiple pages with target (kb): 0
+[6956:31868:0723/155048.633:WARNING:page_discarding_helper.cc(131)] Discarding multiple pages with target (kb): 0
+[6956:25036:0723/155050.753:INFO:CONSOLE(35)] "[object Object]", source: chrome-extension://hndnabgpcmhdmaejoapophbidipmgnpb/dash/dash.js (35)
+[6956:25036:0723/155052.795:INFO:CONSOLE(35)] "[object Object]", source: chrome-extension://hndnabgpcmhdmaejoapophbidipmgnpb/dash/dash.js (35)
+[6956:8768:0723/155053.648:WARNING:page_discarding_helper.cc(131)] Discarding multiple pages with target (kb): 0
+[6956:8768:0723/155103.659:WARNING:page_discarding_helper.cc(131)] Discarding multiple pages with target (kb): 0
+[6956:25036:0723/155105.617:WARNING:pref_notifier_impl.cc(41)] Pref observer for media_router.cast_allow_all_ips found at shutdown.

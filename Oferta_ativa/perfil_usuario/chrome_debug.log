@@ -1,17 +1,20 @@
-[15048:9904:0722/184519.789:WARNING:chrome_main_delegate.cc(742)] This is Chrome version 126.0.6478.183 (not a warning)
-[15048:9904:0722/184519.860:INFO:chrome_browser_cloud_management_controller.cc(196)] No machine level policy manager exists.
-[15048:9904:0722/184519.918:WARNING:browser_management_service.cc(128)] EnterpriseLogoUrl fetch failed with error code -1 and MIME type 
-[15048:9904:0722/184525.664:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'battery'.", source:  (0)
-[15048:9904:0722/184525.664:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'usb-unrestricted'.", source:  (0)
-[15048:9904:0722/184525.765:INFO:CONSOLE(133)] "Event handler of 'x-storagemutated-1' event must be added on the initial evaluation of worker script.", source: https://static.whatsapp.net/rsrc.php/v3/ym/r/nC-3Yux-htg.js?_nc_x=Ij3Wp8lg5Kz (133)
-[15048:9904:0722/184526.679:INFO:CONSOLE(133)] "Event handler of 'x-storagemutated-1' event must be added on the initial evaluation of worker script.", source: https://static.whatsapp.net/rsrc.php/v3/ym/r/nC-3Yux-htg.js?_nc_x=Ij3Wp8lg5Kz (133)
-[15048:9144:0722/184559.903:WARNING:page_discarding_helper.cc(131)] Discarding multiple pages with target (kb): 0
-[15048:10136:0722/184624.954:WARNING:page_discarding_helper.cc(131)] Discarding multiple pages with target (kb): 0
-[15048:10136:0722/184629.957:WARNING:page_discarding_helper.cc(131)] Discarding multiple pages with target (kb): 0
-[15048:8324:0722/184705.030:WARNING:page_discarding_helper.cc(131)] Discarding multiple pages with target (kb): 0
-[15048:24004:0722/184710.037:WARNING:page_discarding_helper.cc(131)] Discarding multiple pages with target (kb): 0
-[15048:9144:0722/184845.181:WARNING:page_discarding_helper.cc(131)] Discarding multiple pages with target (kb): 0
-[15048:9904:0722/184920.137:ERROR:device_event_log_impl.cc(196)] [18:49:20.135] USB: usb_service_win.cc:105 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: Elemento não encontrado. (0x490)
-[15048:8324:0722/184935.277:WARNING:page_discarding_helper.cc(131)] Discarding multiple pages with target (kb): 0
-[15048:23652:0722/184950.304:WARNING:page_discarding_helper.cc(131)] Discarding multiple pages with target (kb): 0
-[15048:9144:0722/185911.093:WARNING:page_discarding_helper.cc(131)] Discarding multiple pages with target (kb): 0
+[9004:24760:0729/175601.773:WARNING:chrome_main_delegate.cc(744)] This is Chrome version 127.0.6533.73 (not a warning)
+[9004:24760:0729/175601.860:INFO:chrome_browser_cloud_management_controller.cc(196)] No machine level policy manager exists.
+[9004:24760:0729/175601.881:WARNING:browser_management_service.cc(128)] EnterpriseLogoUrl fetch failed with error code -1 and MIME type 
+[19984:5136:0729/175602.152:INFO:cpu_info.cc(53)] Available number of cores: 12
+[14488:21884:0729/175602.178:INFO:cpu_info.cc(53)] Available number of cores: 12
+[24872:23204:0729/175602.519:INFO:cpu_info.cc(53)] Available number of cores: 12
+[9004:24760:0729/175607.597:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'battery'.", source:  (0)
+[9004:24760:0729/175607.597:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'usb-unrestricted'.", source:  (0)
+[9004:24760:0729/175607.685:INFO:CONSOLE(133)] "Event handler of 'x-storagemutated-1' event must be added on the initial evaluation of worker script.", source: https://static.whatsapp.net/rsrc.php/v3/yC/r/UdBDh7rDEG_.js?_nc_x=Ij3Wp8lg5Kz (133)
+[9004:24760:0729/175609.723:INFO:CONSOLE(133)] "Event handler of 'x-storagemutated-1' event must be added on the initial evaluation of worker script.", source: https://static.whatsapp.net/rsrc.php/v3/yC/r/UdBDh7rDEG_.js?_nc_x=Ij3Wp8lg5Kz (133)
+[9004:24760:0729/175626.875:WARNING:page_discarding_helper.cc(142)] Discarding multiple pages with target (kb): 0
+[9004:24760:0729/175701.928:WARNING:page_discarding_helper.cc(142)] Discarding multiple pages with target (kb): 0
+[9004:24760:0729/175706.946:WARNING:page_discarding_helper.cc(142)] Discarding multiple pages with target (kb): 0
+[9004:24760:0729/175711.957:WARNING:page_discarding_helper.cc(142)] Discarding multiple pages with target (kb): 0
+[9004:24760:0729/175716.960:WARNING:page_discarding_helper.cc(142)] Discarding multiple pages with target (kb): 0
+[9004:24760:0729/175726.990:WARNING:page_discarding_helper.cc(142)] Discarding multiple pages with target (kb): 0
+[9004:24760:0729/175737.020:WARNING:page_discarding_helper.cc(142)] Discarding multiple pages with target (kb): 0
+[9004:24760:0729/175742.035:WARNING:page_discarding_helper.cc(142)] Discarding multiple pages with target (kb): 0
+[9004:24760:0729/175757.057:WARNING:page_discarding_helper.cc(142)] Discarding multiple pages with target (kb): 0
+[9004:24760:0729/175817.095:WARNING:page_discarding_helper.cc(142)] Discarding multiple pages with target (kb): 0
