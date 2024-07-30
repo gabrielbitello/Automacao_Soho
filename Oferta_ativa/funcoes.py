@@ -7,17 +7,14 @@ from datetime import datetime, timedelta
 import pytz
 import time
 import random
+import requests
 import re
-import pymysql.cursors          
+import logging
+import pymysql.cursors       
 
 
-conexao = pymysql.connect(
-    host=config.host_Geral_Mysql,
-    user=config.user_Geral_Mysql,
-    password=config.password_Geral_Mysql,
-    database=config.database_Geral_Mysql,
-    cursorclass=pymysql.cursors.DictCursor
-)
+logging.basicConfig(filename='app_errors.log', level=logging.ERROR, 
+                    format='%(asctime)s %(levelname)s:%(message)s')
 
 def formatar_telefone(numero):
     # Passo 1: Remover caracteres não numéricos, exceto o sinal de mais (+) no início
@@ -67,114 +64,74 @@ def clique_e_envie(nav2, xpath, texto, enter=False, simular_shift_enter=False):
 
 def buscar_ofertas_ativas():
     try:
-        with conexao.cursor() as cursor:
-            sql = "SELECT total, pessoa, numero, nome_pessoa, nome_passou FROM soho_geral.ofertas_ativa WHERE ativa = 1 LIMIT 1"
-            cursor.execute(sql)
-            resultado = cursor.fetchone()
-            print(f"Resultado da busca de ofertas ativas: {resultado}")
-            if resultado is None:
-                print("Nenhuma oferta ativa encontrada.")
-                return (0, 0)  # Ou qualquer outro valor que indique que nenhum resultado foi encontrado
-            pessoa = resultado['pessoa']
-            if pessoa == 1:
-                return (2, resultado['numero'], resultado['nome_pessoa'], resultado['nome_passou'])
-            elif pessoa == 0:
-                return (1, resultado['total'])
-            else:
-                return (0, 0)
+        response = requests.get('https://soho.bitello.cloud/API/buscar_oferta_ativa.php')
+        if response.status_code == 200:
+            resultado = response.json()
+            return tuple(resultado)
+        else:
+            print(f"Erro ao buscar ofertas ativas: {response.status_code}")
+            return (0, 0)
     except Exception as e:
         print(f"Erro ao buscar ofertas ativas: {e}")
+        logging.error(f"Erro ao buscar ofertas ativas: {e}")
         return (0, 0)
 
 def Mensagem_ofertas_ativas():
-    with conexao.cursor() as cursor:
-        # Query SQL para buscar o número de ofertas ativas
-        sql = "SELECT mensagem FROM soho_geral.ofertas_ativa WHERE ativa = 1 LIMIT 1"
-        cursor.execute(sql)
-        resultado = cursor.fetchone()
-        mensagem_oferta = resultado['mensagem']
-        return mensagem_oferta
+    try:
+        response = requests.get('https://soho.bitello.cloud/API/mensagem_oferta_ativa.php')
+        if response.status_code == 200:
+            resultado = response.json()
+            return resultado.get('mensagem', 'Nenhuma oferta ativa encontrada')
+        else:
+            print(f"Erro ao buscar mensagem de ofertas ativas: {response.status_code}")
+            return 'Neutro'
+    except Exception as e:
+        print(f"Erro ao buscar mensagem de ofertas ativas: {e}")
+        logging.error(f"Erro ao buscar mensagem de ofertas ativas: {e}")
+        return 'Neutro'
 
 def atualizar_h_termino():
-    with conexao.cursor() as cursor:
-        # Obtém o horário atual de São Paulo
-        fuso_horario_sp = pytz.timezone('America/Sao_Paulo')
-        horario_atual_sp = datetime.now(fuso_horario_sp).strftime('%Y-%m-%d %H:%M:%S')
-        
-        # Query SQL para atualizar o campo h_termino
-        sql = "UPDATE soho_geral.ofertas_ativa SET ativa = 0, h_termino = %s WHERE ativa = 1 LIMIT 1"
-        cursor.execute(sql, (horario_atual_sp,))
-        
-    # Confirma a transação
-    conexao.commit()
+    try:
+        response = requests.get('https://soho.bitello.cloud/API/atualiza_h_termina.php')
+        if response.status_code == 200:
+            resultado = response.json()
+            print(resultado.get('success', 'Erro ao atualizar o horário de término'))
+        else:
+            print(f"Erro ao atualizar o horário de término: {response.status_code}")
+    except Exception as e:
+        print(f"Erro ao atualizar o horário de término: {e}")
+        logging.error(f"Erro ao atualizar o horário de término: {e}")
 
-    print("O horário de término foi atualizado com sucesso.")
-
-def cadastrar_cliente(nome, nome_f, numero, numero_f, status, mensagem):
-    with conexao.cursor() as cursor:
-        # Data atual
-        data_atual = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        
-        # Query SQL para inserir os dados na tabela oferta_ativa_Clientes
-        sql = """
-        INSERT INTO soho_geral.oferta_ativa_Clientes (Nome, Nome_F, Numero, Numero_F, Status, Mensagem, Data, Retorno) 
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-            """
-        cursor.execute(sql, (nome, nome_f, numero, numero_f, status, mensagem, data_atual, 0))
-        
-    # Confirma a transação
-    conexao.commit()
+def cadastrar_cliente(data):
+    url = 'http://seu_servidor/api_cadastrar_cliente.php'
+    try:
+        response = requests.post(url, data=data)
+        if response.status_code == 200:
+            resultado = response.json()
+            print(resultado.get('success', 'Erro ao cadastrar cliente'))
+        else:
+            print(f"Erro ao cadastrar cliente: {response.status_code}")
+            logging.error(f"Erro ao cadastrar cliente: {response.status_code}")
+    except Exception as e:
+        print(f"Erro ao cadastrar cliente: {e}")
+        logging.error(f"Erro ao cadastrar cliente: {e}")
 
 def verificar_numero_existente(numero):
-    with conexao.cursor() as cursor:
-        # Primeiro, buscar a data máxima
-        sql_data = "SELECT MAX(Data) AS Data FROM soho_geral.oferta_ativa_Clientes WHERE Numero_F = %s"
-        cursor.execute(sql_data, (numero,))
-        resultado_data = cursor.fetchone()
-
-        print(f"Resultado da busca da data: {resultado_data}")
-        
-        if resultado_data is not None and resultado_data['Data'] is not None:
-            ultima_data = resultado_data['Data']
-            # Debug: imprimir a última data obtida
-            print(f"Última data obtida do banco de dados: {ultima_data}")
-            try:
-                # Converte a data de string para datetime
-                ultima_data_f = datetime.strptime(ultima_data, '%Y-%m-%d %H:%M:%S')
-            except ValueError as e:
-                # Debug: em caso de erro na conversão, imprimir o erro
-                print(f"Erro na conversão da data: {e}")
-                return True  # Retorna True para evitar enviar a mensagem
-
-            # Debug: imprimir a data convertida
-            print(f"Última data convertida para datetime: {ultima_data_f}")
-            
-            # Calcula a data 30 dias atrás a partir de hoje
-            trinta_dias_atras = datetime.now() - timedelta(days=30)
-            # Debug: imprimir a data de 30 dias atrás
-            print(f"Data de 30 dias atrás: {trinta_dias_atras}")
-            
-            # Verifica se a última data registrada é menor que a data 30 dias atrás
-            if ultima_data_f < trinta_dias_atras:
-                print("A última data registrada é menor que a data de 30 dias atrás.")
-                sql_retorno = "SELECT MAX(Retorno) AS Retorno FROM soho_geral.oferta_ativa_Clientes WHERE Numero_F = %s"
-                cursor.execute(sql_retorno, (numero,))
-                resultado_retorno = cursor.fetchone()
-                
-                if resultado_retorno is not None and resultado_retorno['Retorno'] is not None:
-                    # Debug: imprimir o valor do retorno
-                    print(f"Valor do retorno: {resultado_retorno['Retorno']}")
-                    if resultado_retorno['Retorno'] == 0:
-                        print("Retorno é 0. Pode enviar mensagem.")
-                        return False  # O número existe, e a última data registrada tem mais de 30 dias, e não está bloqueado o envio de mensagem
-                    else:
-                        print("Retorno é diferente de 0. Não pode enviar mensagem.")
-                        return True  # O número existe, e a última data registrada tem mais de 30 dias, e está bloqueado o envio de mensagem
-            else:
-                return True  # O número existe, mas a última data registrada tem menos de 30 dias
+    url = 'http://seu_servidor/api_verificar_numero.php'
+    data = {'numero': numero}
+    try:
+        response = requests.post(url, data=data)
+        if response.status_code == 200:
+            resultado = response.json()
+            return not resultado.get('can_send_message', True)
         else:
-            print("O número não existe.")
-            return False  # O número não existe
+            print(f"Erro ao verificar número: {response.status_code}")
+            logging.error(f"Erro ao verificar número: {response.status_code}")
+            return True
+    except Exception as e:
+        print(f"Erro ao verificar número: {e}")
+        logging.error(f"Erro ao verificar número: {e}")
+        return True
 
 def remover_caracteres_nao_alfabeticos(nome):
     # Mantém apenas letras (com ou sem acentos)

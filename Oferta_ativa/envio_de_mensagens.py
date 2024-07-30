@@ -12,15 +12,16 @@ import Mensagem
 
 
 
-def contato_oferta_ativa(loop, mensagem_oferta, whatsapp, crmx):
+def contato_oferta_ativa(loop, mensagem_oferta, whatsapp, crmx, deu_erro):
     n_loop = int(loop)
     print (loop)
     # Inicia o processo de contato
     while n_loop > 0:
 
-        time.sleep(2)
-
-        crmx.find_element(By.XPATH, '//*[@id="info-cliente"]/div[2]/div/div[3]/div/div[1]/button').click()  # Atender cliente
+        if deu_erro == False:
+            time.sleep(1)
+            crmx.find_element(By.XPATH, '//*[@id="info-cliente"]/div[2]/div/div[3]/div/div[1]/button').click()  # Atender cliente
+            deu_erro = False
 
         time.sleep(2)
 
