@@ -11,6 +11,7 @@ import funcoes
 import Mensagem
 
 
+
 def contato_oferta_ativa(loop, mensagem_oferta, whatsapp, crmx):
     n_loop = int(loop)
     print (loop)

@@ -11,11 +11,13 @@ import re
 import pymysql.cursors          
 
 
-conexao = pymysql.connect(host=config.host_Geral_Mysql,
-                            user=config.user_Geral_Mysql,
-                            password=config.password_Geral_Mysql,
-                            database=config.database_Geral_Mysql,
-                            cursorclass=pymysql.cursors.DictCursor)
+conexao = pymysql.connect(
+    host=config.host_Geral_Mysql,
+    user=config.user_Geral_Mysql,
+    password=config.password_Geral_Mysql,
+    database=config.database_Geral_Mysql,
+    cursorclass=pymysql.cursors.DictCursor
+)
 
 def formatar_telefone(numero):
     # Passo 1: Remover caracteres não numéricos, exceto o sinal de mais (+) no início
@@ -64,21 +66,25 @@ def clique_e_envie(nav2, xpath, texto, enter=False, simular_shift_enter=False):
         print(f"Erro ao interagir com o elemento: {e}")
 
 def buscar_ofertas_ativas():
-    with conexao.cursor() as cursor:
-        # Query SQL para buscar o número de ofertas ativas
-        sql = "SELECT total, pessoa, numero, nome_pessoa, nome_passou FROM soho_geral.ofertas_ativa WHERE ativa = 1 LIMIT 1"
-        cursor.execute(sql)
-        resultado = cursor.fetchone()
-        if resultado is None:
-            return (0, 0)  # Ou qualquer outro valor que indique que nenhum resultado foi encontrado
-        pessoa = resultado['pessoa']
-        if pessoa == 1:
-            return (2, resultado['numero'], resultado['nome_pessoa'], resultado['nome_passou'])
-        else:
-            if pessoa == 0:
+    try:
+        with conexao.cursor() as cursor:
+            sql = "SELECT total, pessoa, numero, nome_pessoa, nome_passou FROM soho_geral.ofertas_ativa WHERE ativa = 1 LIMIT 1"
+            cursor.execute(sql)
+            resultado = cursor.fetchone()
+            print(f"Resultado da busca de ofertas ativas: {resultado}")
+            if resultado is None:
+                print("Nenhuma oferta ativa encontrada.")
+                return (0, 0)  # Ou qualquer outro valor que indique que nenhum resultado foi encontrado
+            pessoa = resultado['pessoa']
+            if pessoa == 1:
+                return (2, resultado['numero'], resultado['nome_pessoa'], resultado['nome_passou'])
+            elif pessoa == 0:
                 return (1, resultado['total'])
             else:
                 return (0, 0)
+    except Exception as e:
+        print(f"Erro ao buscar ofertas ativas: {e}")
+        return (0, 0)
 
 def Mensagem_ofertas_ativas():
     with conexao.cursor() as cursor:
