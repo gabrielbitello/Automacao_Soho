@@ -95,15 +95,15 @@ def contato_oferta_ativa(loop, mensagem_oferta, whatsapp, crmx, deu_erro):
                 
                 time.sleep(6)
 
-                ActionChains(whatsapp).context_click(whatsapp.find_element(By.XPATH, '/html/body/div[1]/div/div/div[2]/div[3]/div/div[2]/div[2]/div/div/div[1]')).perform()
-                print("Clicou com o botão direito")
-                time.sleep(2)
+                #ActionChains(whatsapp).context_click(whatsapp.find_element(By.XPATH, '/html/body/div[1]/div/div/div[2]/div[3]/div/div[2]/div[2]/div/div/div[1]')).perform()
+                #print("Clicou com o botão direito")
+                #time.sleep(2)
 
-                arquivar = whatsapp.find_element(By.XPATH, '/html/body/div[1]/div/div/span[5]/div/ul/div/li[1]/div').text
-                print(arquivar)
-                if arquivar == "Arquivar conversa":
-                    whatsapp.find_element(By.XPATH, '/html/body/div[1]/div/div/span[5]/div/ul/div/li[1]/div').click()
-                    print("Conversa arquivada")
+                #arquivar = whatsapp.find_element(By.XPATH, '/html/body/div[1]/div/div/span[5]/div/ul/div/li[1]/div').text
+                #print(arquivar)
+                #if arquivar == "Arquivar conversa":
+                    #whatsapp.find_element(By.XPATH, '/html/body/div[1]/div/div/span[5]/div/ul/div/li[1]/div').click()
+                    #print("Conversa arquivada")
 
             except NoSuchElementException:
                 # Se o elemento não for encontrado, entra no except
@@ -123,3 +123,4 @@ def contato_oferta_ativa(loop, mensagem_oferta, whatsapp, crmx, deu_erro):
         print(f"x antes: {n_loop}")
         n_loop = n_loop - 1
         print(f"x depos: {n_loop}")
+        time.sleep(1)

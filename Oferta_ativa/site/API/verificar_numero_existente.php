@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 }
 
 // Obtém o número do POST
-$numero = $_POST['numero'];
+$numero = $_POST['numero'] ?? '';
 
 // Query SQL para buscar a data máxima
 $sql_data = "SELECT MAX(Data) AS Data FROM soho_geral.oferta_ativa_Clientes WHERE Numero_F = ?";
@@ -45,23 +45,18 @@ if ($resultado_data && $resultado_data['Data']) {
 
         if ($resultado_retorno && $resultado_retorno['Retorno'] !== null) {
             if ($resultado_retorno['Retorno'] == 0) {
-                // O número existe, e a última data registrada tem mais de 30 dias, e não está bloqueado o envio de mensagem
-                $response['can_send_message'] = false;
+                $response = false;  // Pode enviar mensagem
             } else {
-                // O número existe, e a última data registrada tem mais de 30 dias, e está bloqueado o envio de mensagem
-                $response['can_send_message'] = true;
+                $response = true;  // Não pode enviar mensagem
             }
         } else {
-            // O número existe, e a última data registrada tem mais de 30 dias, e está bloqueado o envio de mensagem
-            $response['can_send_message'] = true;
+            $response = true;  // Não pode enviar mensagem (resultado_retorno é null)
         }
     } else {
-        // O número existe, mas a última data registrada tem menos de 30 dias
-        $response['can_send_message'] = true;
+        $response = true;  // Não pode enviar mensagem (menos de 30 dias)
     }
 } else {
-    // O número não existe
-    $response['can_send_message'] = false;
+    $response = false;  // O número não existe
 }
 
 echo json_encode($response);

@@ -102,8 +102,16 @@ def atualizar_h_termino():
         print(f"Erro ao atualizar o horário de término: {e}")
         logging.error(f"Erro ao atualizar o horário de término: {e}")
 
-def cadastrar_cliente(data):
-    url = 'http://seu_servidor/api_cadastrar_cliente.php'
+def cadastrar_cliente(nome_cliente, primeiro_nome, numero_cliente, numero_formatado, status, mensagem):
+    url = 'https://soho.bitello.cloud/API/cadastrar_cliente.php'
+    data = {
+        'nome': nome_cliente,
+        'nome_f': primeiro_nome,
+        'numero': numero_cliente,
+        'numero_f': numero_formatado,
+        'status': status,
+        'mensagem': mensagem
+    }
     try:
         response = requests.post(url, data=data)
         if response.status_code == 200:
@@ -117,13 +125,13 @@ def cadastrar_cliente(data):
         logging.error(f"Erro ao cadastrar cliente: {e}")
 
 def verificar_numero_existente(numero):
-    url = 'http://seu_servidor/api_verificar_numero.php'
+    url = 'https://soho.bitello.cloud/API/verificar_numero_existente.php'
     data = {'numero': numero}
     try:
         response = requests.post(url, data=data)
         if response.status_code == 200:
             resultado = response.json()
-            return not resultado.get('can_send_message', True)
+            return resultado
         else:
             print(f"Erro ao verificar número: {response.status_code}")
             logging.error(f"Erro ao verificar número: {response.status_code}")
