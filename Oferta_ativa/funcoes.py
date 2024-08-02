@@ -1,16 +1,12 @@
-import config
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
-from datetime import datetime, timedelta
-import pytz
 import time
 import random
 import requests
 import re
-import logging
-import pymysql.cursors       
+import logging    
 
 
 logging.basicConfig(filename='app_errors.log', level=logging.ERROR, 

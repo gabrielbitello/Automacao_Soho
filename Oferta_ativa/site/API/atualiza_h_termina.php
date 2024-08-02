@@ -1,7 +1,7 @@
 <?php
 include 'Config.php';
 
-header('Content-Type: application/json');
+header('Content-Type: application/json charset=utf-8');
 
 // Cria a conexão
 $conn = new mysqli($host_Geral_Mysql, $user_Geral_Mysql, $password_Geral_Mysql, $database_Geral_Mysql);
