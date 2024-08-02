@@ -11,6 +11,8 @@ if ($conn->connect_error) {
     die(json_encode(array("error" => "Falha na conexão: " . $conn->connect_error)));
 }
 
+$conn->set_charset("utf8");
+
 // Obtém o número do POST
 $numero = $_POST['numero'] ?? '';
 

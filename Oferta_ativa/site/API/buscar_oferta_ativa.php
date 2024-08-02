@@ -11,6 +11,8 @@ if ($conn->connect_error) {
     die(json_encode(array("error" => "Falha na conexão: " . $conn->connect_error)));
 }
 
+$conn->set_charset("utf8");
+
 $sql = "SELECT total, pessoa, numero, nome_pessoa, nome_passou FROM ofertas_ativa WHERE ativa = 1 LIMIT 1";
 $result = $conn->query($sql);
 

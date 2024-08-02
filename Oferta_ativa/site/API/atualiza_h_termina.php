@@ -1,7 +1,7 @@
 <?php
 include 'Config.php';
 
-header('Content-Type: application/json charset=utf-8');
+header('Content-Type: application/json; charset=utf-8');
 
 // Cria a conexão
 $conn = new mysqli($host_Geral_Mysql, $user_Geral_Mysql, $password_Geral_Mysql, $database_Geral_Mysql);
@@ -10,6 +10,9 @@ $conn = new mysqli($host_Geral_Mysql, $user_Geral_Mysql, $password_Geral_Mysql, 
 if ($conn->connect_error) {
     die(json_encode(array("error" => "Falha na conexão: " . $conn->connect_error)));
 }
+
+// Define a codificação para UTF-8
+$conn->set_charset("utf8");
 
 // Obtém o horário atual de São Paulo
 date_default_timezone_set('America/Sao_Paulo');
