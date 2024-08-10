@@ -6,7 +6,8 @@ import envio_de_mensagens
 import envio_de_mensagem_expecifica
 import Chromes
 
-
+whatsapp = None
+crmx = None
 
 def verificar_navegador(navegador):
     try:
@@ -15,27 +16,18 @@ def verificar_navegador(navegador):
     except:
         return False
 
-def reiniciar_navegador(navegador, tipo):
+def reiniciar_navegador(navegador, tipo, tipo_mensagem):
     if tipo == 'whatsapp':
-        return Chromes.iniciar_whatsapp()
+        if tipo_mensagem == 1:
+            return Chromes.iniciar_whatsapp(funcoes.buscar_ofertas_ativas()[2])
+        elif tipo_mensagem == 2:
+            return Chromes.iniciar_whatsapp(funcoes.buscar_ofertas_ativas()[4])
     elif tipo == 'crmx':
         return Chromes.iniciar_crmx()
     return None
 
-
-
-
-
-
 # Loop principal
 while True:
-    if not verificar_navegador(whatsapp):
-        print("WhatsApp foi fechado. Reiniciando...")
-        whatsapp = reiniciar_navegador(whatsapp, 'whatsapp')
-
-    if not verificar_navegador(crmx):
-        print("CRMX foi fechado. Reiniciando...")
-        crmx = reiniciar_navegador(crmx, 'crmx')
 
     try:
         if funcoes.buscar_ofertas_ativas()[0] == 1:

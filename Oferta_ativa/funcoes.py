@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 import time
 import random
@@ -142,3 +143,40 @@ def remover_caracteres_nao_alfabeticos(nome):
     nome_limpo = re.sub(r'[^\wáéíóúÁÉÍÓÚàèìòùÀÈÌÒÙäëïöüÄËÏÖÜãñõÃÑÕ]', '', nome)
     return nome_limpo
 
+def obter_corretor(id_corretor):
+    url = "https://soho.bitello.cloud/API/perfil_corretor.php"
+    params = {'id': id_corretor}
+    
+    try:
+        response = requests.get(url, params=params)
+        if response.status_code == 200:
+            resultado = response.json()
+            return resultado
+        else:
+            print(f"Erro ao obter corretor: {response.status_code}")
+            logging.error(f"Erro ao obter corretor: {response.status_code}")
+            return {"error": "Erro ao obter corretor"}
+    except Exception as e:
+        print(f"Erro ao obter corretor: {e}")
+        logging.error(f"Erro ao obter corretor: {e}")
+        return {"error": "Erro ao obter corretor"}
+
+def atualizar_cod_corretor(id_corretor, cod):
+    url = "https://soho.bitello.cloud/API/cod_whatsapp.php"
+    data = {'id': id_corretor, 'cod': cod}
+    
+    try:
+        response = requests.post(url, data=data)
+        if response.status_code != 200:
+            print(f"Erro ao atualizar cod do corretor: {response.status_code}")
+            logging.error(f"Erro ao atualizar cod do corretor: {response.status_code}")
+    except Exception as e:
+        print(f"Erro ao atualizar cod do corretor: {e}")
+        logging.error(f"Erro ao atualizar cod do corretor: {e}")
+
+def elemento_existe(driver, xpath):
+    try:
+        driver.find_element(By.XPATH, xpath)
+        return True
+    except NoSuchElementException:
+        return False
