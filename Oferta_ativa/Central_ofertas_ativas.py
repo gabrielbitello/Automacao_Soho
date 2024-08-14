@@ -1,57 +1,34 @@
 import time
+import subprocess
 from selenium.common.exceptions import NoSuchWindowException
-
 import funcoes
-import envio_de_mensagens
-import envio_de_mensagem_expecifica
-import Chromes
 
-whatsapp = None
-crmx = None
+def executar_script(corretor_id, repeticoes, tipo):
+    comando = f'python Ofertas_ativas.py {corretor_id} {repeticoes}'
+    subprocess.run(comando, shell=True)
 
-def verificar_navegador(navegador):
-    try:
-        navegador.current_url
-        return True
-    except:
-        return False
-
-def reiniciar_navegador(navegador, tipo, tipo_mensagem):
-    if tipo == 'whatsapp':
-        if tipo_mensagem == 1:
-            return Chromes.iniciar_whatsapp(funcoes.buscar_ofertas_ativas()[2])
-        elif tipo_mensagem == 2:
-            return Chromes.iniciar_whatsapp(funcoes.buscar_ofertas_ativas()[4])
-    elif tipo == 'crmx':
-        return Chromes.iniciar_crmx()
-    return None
-
-# Loop principal
 while True:
-
     try:
-        if funcoes.buscar_ofertas_ativas()[0] == 1:
-            whatsapp = Chromes.iniciar_whatsapp(funcoes.buscar_ofertas_ativas()[2])
-            crmx = Chromes.iniciar_crmx()
-            print(f"Existem {funcoes.buscar_ofertas_ativas()[1]} ofertas ativas. Iniciando o processo de contato...")
-            envio_de_mensagens.contato_oferta_ativa(funcoes.buscar_ofertas_ativas()[1], funcoes.Mensagem_ofertas_ativas(), whatsapp, crmx, deu_erro)
+        resultado = funcoes.buscar_ofertas_ativas()
+        if resultado[0] == 1:
+            corretor_id = resultado[2]
+            repeticoes = resultado[1]
+            idofertaativa = resultado[4]
+            print(f"Existem {repeticoes} ofertas ativas. Iniciando o processo com corretor {corretor_id}...")
+            executar_script(corretor_id, repeticoes, 1, idofertaativa)
             funcoes.atualizar_h_termino()
         else:
-            if funcoes.buscar_ofertas_ativas()[0] == 2:
-                whatsapp = Chromes.iniciar_whatsapp(funcoes.buscar_ofertas_ativas()[4])
-                crmx = Chromes.iniciar_crmx()
-                envio_de_mensagem_expecifica.contato_mensagem(funcoes.buscar_ofertas_ativas()[1], funcoes.buscar_ofertas_ativas()[2], funcoes.buscar_ofertas_ativas()[3], funcoes.Mensagem_ofertas_ativas(), whatsapp)
+            if resultado[0] == 2:
+                corretor_id = resultado[4]
+                repeticoes = resultado[1]
+                idofertaativa = resultado[6]
+                print(f"Iniciando processo específico com corretor {corretor_id}...")
+                executar_script(corretor_id, repeticoes, 2, idofertaativa)
                 funcoes.atualizar_h_termino()
             else:
-                print("Não existem mensagens específicas ativas no momento.")
-            print("Não existem ofertas ativas no momento.")
+                print("Não existem mensagens específicas ou ofertas ativas no momento.")
     except NoSuchWindowException:
-        print("Navegador foi fechado durante a execução. Reiniciando e continuando...")
-        if not verificar_navegador(whatsapp):
-            whatsapp = reiniciar_navegador(whatsapp, 'whatsapp')
-            deu_erro = True
-        if not verificar_navegador(crmx):
-            crmx = reiniciar_navegador(crmx, 'crmx')
+        print("O processo foi encerrado durante a execução.")
 
     # Espera 1 minuto antes da próxima verificação
     time.sleep(60)
