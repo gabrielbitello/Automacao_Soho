@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 
 $conn->set_charset("utf8");
 
-$sql = "SELECT mensagem FROM ofertas_ativa WHERE ativa = 1 LIMIT 1";
+$sql = "SELECT mensagem FROM ofertas_ativa WHERE ativa = 1 ORDER BY idofertas_ativa ASC LIMIT 1";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

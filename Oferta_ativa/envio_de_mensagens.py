@@ -62,7 +62,7 @@ def contato_oferta_ativa(loop, mensagem_oferta, whatsapp, crmx, deu_erro, id_ofe
 
             try:
 
-                mensagem = Mensagem.Mensagem(primeiro_nome, mensagem_oferta, 0)
+                mensagem = Mensagem.Mensagem(primeiro_nome, mensagem_oferta, 0, funcoes.obter_corretor(id)[0]['Nome'])
 
                 time.sleep(round(random.uniform(3, 5), 1))
 

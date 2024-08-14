@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../../Global/config.php';
+require '../../../Global/config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST['username']);
@@ -20,10 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             
             // Verifica a senha
-            if (password_verify($password, $user['password'])) {
+            if ($password = $user['SenhaCRMX']) {
                 // Autenticação bem-sucedida
-                $_SESSION['user_id'] = $user['id'];
-                header("Location: dashboard.php");
+                $_SESSION['user_id'] = $user['idCorretores'];
+                header("Location: ../../OfertaAtiva/OA.html");
                 exit();
             } else {
                 // Senha incorreta
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         } else {
             // Usuário não encontrado
-            echo "Usuário ou senha inválidos.";
+            echo "Usuário não encontrado.";
         }
     } catch (PDOException $e) {
         echo "Erro: " . $e->getMessage();

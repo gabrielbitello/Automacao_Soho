@@ -30,7 +30,7 @@ $data_atual = date('Y-m-d H:i:s');
 $sql = "INSERT INTO oferta_ativa_Clientes (Nome, Nome_F, Numero, Numero_F, Status, Mensagem, Data, Retorno, Corretor) 
         VALUES (?, ?, ?, ?, ?, ?, ?, 0, ?)";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sssssss", $nome, $nome_f, $numero, $numero_f, $status, $mensagem, $data_atual);
+$stmt->bind_param("sssssss", $nome, $nome_f, $numero, $numero_f, $status, $mensagem, $data_atual, $ID);
 
 if ($stmt->execute()) {
     $response = array("success" => "Cliente cadastrado com sucesso.");

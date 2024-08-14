@@ -74,8 +74,9 @@ def iniciar_whatsapp(ID_corretor):
             time.sleep(5)
     return whatsapp
 
-def iniciar_crmx():
-    perfil_crmx = os.path.join(config.caminho, 'crmx')
+def iniciar_crmx(ID_corretor):
+    pasta = (f"crmx {ID_corretor}")
+    perfil_crmx = os.path.join(config.caminho, pasta)
 
     chrome_options2 = Options()
     chrome_options2.add_argument(f'user-data-dir={perfil_crmx}')
@@ -93,11 +94,11 @@ def iniciar_crmx():
 
     time.sleep(round(random.uniform(2, 4), 1))
 
-    crmx.find_element(By.XPATH, '//*[@id="username"]').send_keys(config.email_CRMX)
+    crmx.find_element(By.XPATH, '//*[@id="username"]').send_keys(funcoes.obter_corretor(ID_corretor)[0]['EmailCRMX'])
 
     time.sleep(round(random.uniform(1, 2), 1))
 
-    crmx.find_element(By.XPATH, '//*[@id="password"]').send_keys(config.senha_CRMX) 
+    crmx.find_element(By.XPATH, '//*[@id="password"]').send_keys(funcoes.obter_corretor(ID_corretor)[0]['SenhaCRMX']) 
 
     time.sleep(round(random.uniform(1, 2), 1))
 

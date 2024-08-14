@@ -10,6 +10,9 @@ import Chromes
 whatsapp = None
 crmx = None
 
+
+print ("Iniciando o processo de contato...")
+
 def verificar_navegador(navegador):
     try:
         navegador.current_url
@@ -24,30 +27,31 @@ def reiniciar_navegador(navegador, tipo, tipo_mensagem, id):
         elif tipo_mensagem == 2:
             return Chromes.iniciar_whatsapp(id)
     elif tipo == 'crmx':
-        return Chromes.iniciar_crmx()
+        return Chromes.iniciar_crmx(id)
     return None
 
 def verificar(id):
-    if funcoes.verificar_oferta_ativa(id)[7] > 0:
+    if int(funcoes.verificar_oferta_ativa(id)[0]['restante']) > 0:
         return True
     else:
         return False
     
 
 def start (id, Nloop, tipo, id_oferta_ativa):
+    deu_erro = False
     while verificar(id_oferta_ativa):
 
         try:
             if tipo == 1:
                 whatsapp = Chromes.iniciar_whatsapp(id)
-                crmx = Chromes.iniciar_crmx()
+                crmx = Chromes.iniciar_crmx(id)
                 print(f"Existem {Nloop} ofertas ativas. Iniciando o processo de contato...")
                 envio_de_mensagens.contato_oferta_ativa(Nloop, funcoes.Mensagem_ofertas_ativas(), whatsapp, crmx, deu_erro, id_oferta_ativa, id)
                 funcoes.atualizar_h_termino()
             else:
                 if tipo == 2:
                     whatsapp = Chromes.iniciar_whatsapp(id)
-                    crmx = Chromes.iniciar_crmx()
+                    crmx = Chromes.iniciar_crmx(id)
                     envio_de_mensagem_expecifica.contato_mensagem(funcoes.buscar_ofertas_ativas()[1], funcoes.buscar_ofertas_ativas()[2], funcoes.buscar_ofertas_ativas()[3], funcoes.Mensagem_ofertas_ativas(), whatsapp)
                     funcoes.atualizar_h_termino()
                 else:
@@ -72,4 +76,7 @@ if __name__ == "__main__":
     idoferta_ativa = sys.argv[4]
 
     # Executando o processo com os dados recebidos
-    start(corretor_id, repeticoes, tipo, idoferta_ativa)
+    start(int(corretor_id), int(repeticoes), int(tipo), int(idoferta_ativa))
+    funcoes.atualizar_h_termino()
+    time.sleep(12)
+    sys.exit()

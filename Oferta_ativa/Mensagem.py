@@ -1,7 +1,5 @@
 import time
 
-Base = "Meu nome é Gabriel e sou Consultor imobiliário na Prime Soho. Recentemente, você forneceu suas informações de contato em resposta a um anúncio imobiliário."
-
 poty_mensagem = (
     "Aproveitando o contato, gostaria de apresentar um lançamento da Piemont, chamado Poty. "
     "Será um condomínio de alto padrão contendo 2 torres: a primeira torre com um único apartamento por andar, "
@@ -24,8 +22,10 @@ def saudacao():
 
     return saudacao
 
-def Mensagem(primeiro_nome, mensagem_oferta, nome_passou):
+def Mensagem(primeiro_nome, mensagem_oferta, nome_passou, Nome_corretor):
     
+    Base = f"Meu nome é {Nome_corretor} e sou Consultor imobiliário na Prime Soho. Recentemente, você forneceu suas informações de contato em resposta a um anúncio imobiliário."
+
     neutro_p1 = (
         f"Então {primeiro_nome}, estou entrando em contato para saber se ainda está à procura de imóveis. "
         "Temos diversas opções disponíveis, tanto prontas quanto na planta, e acredito que podemos encontrar algo que atenda suas necessidades."

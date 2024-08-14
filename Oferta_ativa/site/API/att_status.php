@@ -19,14 +19,13 @@ date_default_timezone_set('America/Sao_Paulo');
 $horario_atual_sp = date('Y-m-d H:i:s');
 
 // Query SQL para atualizar o campo h_termino
-$sql = "UPDATE ofertas_ativa SET ativa = 0, h_termino = ? WHERE ativa = 1 ORDER BY idofertas_ativa ASC LIMIT 1";
+$sql = "UPDATE ofertas_ativa SET status = 1 WHERE ativa = 1 AND status = 0 ORDER BY idofertas_ativa ASC LIMIT 1";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $horario_atual_sp);
 
 if ($stmt->execute()) {
-    $response = array("success" => "O horário de término foi atualizado com sucesso.");
+    $response = array("success" => "O status foi atualizado com sucesso.");
 } else {
-    $response = array("error" => "Erro ao atualizar o horário de término: " . $stmt->error);
+    $response = array("error" => "Erro ao atualizar o status: " . $stmt->error);
 }
 
 echo json_encode($response);

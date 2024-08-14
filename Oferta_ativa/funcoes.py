@@ -198,3 +198,33 @@ def atualizar_restante(id, novo_restante):
         print(f"Erro ao atualizar o valor de 'restante': {e}")
         logging.error(f"Erro ao atualizar o valor de 'restante': {e}")
         return False
+
+def att_status():
+    try:
+        response = requests.get('https://soho.bitello.cloud/API/att_status.php')
+        if response.status_code == 200:
+            resultado = response.json()
+            print(resultado.get('success', 'Erro ao atualizar o status'))
+        else:
+            print(f"Erro ao atualizar o status: {response.status_code}")
+    except Exception as e:
+        print(f"Erro ao atualizar o status: {e}")
+        logging.error(f"Erro ao atualizar o status: {e}")
+
+def verificar_oferta_ativa(id):
+    url = "https://soho.bitello.cloud/API/oferta_ativa.php"
+    params = {'id': id}
+    
+    try:
+        response = requests.get(url, params=params)
+        if response.status_code == 200:
+            resultado = response.json()
+            return resultado
+        else:
+            print(f"Erro ao obter oferta_ativa: {response.status_code}")
+            logging.error(f"Erro ao obter oferta_ativa: {response.status_code}")
+            return {"error": "Erro ao obter oferta_ativa"}
+    except Exception as e:
+        print(f"Erro ao obter oferta_ativa: {e}")
+        logging.error(f"Erro ao obter oferta_ativa: {e}")
+        return {"error": "Erro ao obter oferta_ativa"}
