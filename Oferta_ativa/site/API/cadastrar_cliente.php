@@ -20,14 +20,15 @@ $numero = $_POST['numero'];
 $numero_f = $_POST['numero_f'];
 $status = $_POST['status'];
 $mensagem = $_POST['mensagem'];
+$ID = $_POST['ID'];
 
 // Data atual
 date_default_timezone_set('America/Sao_Paulo');
 $data_atual = date('Y-m-d H:i:s');
 
 // Query SQL para inserir os dados na tabela oferta_ativa_Clientes
-$sql = "INSERT INTO oferta_ativa_Clientes (Nome, Nome_F, Numero, Numero_F, Status, Mensagem, Data, Retorno) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, 0)";
+$sql = "INSERT INTO oferta_ativa_Clientes (Nome, Nome_F, Numero, Numero_F, Status, Mensagem, Data, Retorno, Corretor) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, 0, ?)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("sssssss", $nome, $nome_f, $numero, $numero_f, $status, $mensagem, $data_atual);
 

@@ -33,4 +33,5 @@ if ($result->num_rows > 0) {
 echo json_encode($response);
 
 $conn->close();
+$stmt->close();
 ?>

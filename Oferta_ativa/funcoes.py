@@ -99,7 +99,7 @@ def atualizar_h_termino():
         print(f"Erro ao atualizar o horário de término: {e}")
         logging.error(f"Erro ao atualizar o horário de término: {e}")
 
-def cadastrar_cliente(nome_cliente, primeiro_nome, numero_cliente, numero_formatado, status, mensagem):
+def cadastrar_cliente(nome_cliente, primeiro_nome, numero_cliente, numero_formatado, status, mensagem, ID):
     url = 'https://soho.bitello.cloud/API/cadastrar_cliente.php'
     data = {
         'nome': nome_cliente,
@@ -107,7 +107,8 @@ def cadastrar_cliente(nome_cliente, primeiro_nome, numero_cliente, numero_format
         'numero': numero_cliente,
         'numero_f': numero_formatado,
         'status': status,
-        'mensagem': mensagem
+        'mensagem': mensagem,
+        'ID': ID
     }
     try:
         response = requests.post(url, data=data)
@@ -179,4 +180,21 @@ def elemento_existe(driver, xpath):
         driver.find_element(By.XPATH, xpath)
         return True
     except NoSuchElementException:
+        return False
+
+def atualizar_restante(id, novo_restante):
+    url = 'https://soho.bitello.cloud/API/att_restante.php'
+    data = {'id': id, 'restante': novo_restante}
+    try:
+        response = requests.post(url, data=data)
+        if response.status_code == 200:
+            print("Valor de 'restante' atualizado com sucesso.")
+            return True
+        else:
+            print(f"Erro ao atualizar o valor de 'restante': {response.status_code}")
+            logging.error(f"Erro ao atualizar o valor de 'restante': {response.status_code}")
+            return False
+    except Exception as e:
+        print(f"Erro ao atualizar o valor de 'restante': {e}")
+        logging.error(f"Erro ao atualizar o valor de 'restante': {e}")
         return False

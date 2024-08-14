@@ -28,11 +28,13 @@ def reiniciar_navegador(navegador, tipo, tipo_mensagem, id):
     return None
 
 def verificar(id):
-    if funcoes
+    if funcoes.verificar_oferta_ativa(id)[7] > 0:
+        return True
+    else:
+        return False
     
 
 def start (id, Nloop, tipo, id_oferta_ativa):
-    # Loop principal
     while verificar(id_oferta_ativa):
 
         try:
@@ -40,7 +42,7 @@ def start (id, Nloop, tipo, id_oferta_ativa):
                 whatsapp = Chromes.iniciar_whatsapp(id)
                 crmx = Chromes.iniciar_crmx()
                 print(f"Existem {Nloop} ofertas ativas. Iniciando o processo de contato...")
-                envio_de_mensagens.contato_oferta_ativa(Nloop, funcoes.Mensagem_ofertas_ativas(), whatsapp, crmx, deu_erro)
+                envio_de_mensagens.contato_oferta_ativa(Nloop, funcoes.Mensagem_ofertas_ativas(), whatsapp, crmx, deu_erro, id_oferta_ativa, id)
                 funcoes.atualizar_h_termino()
             else:
                 if tipo == 2:
@@ -59,16 +61,15 @@ def start (id, Nloop, tipo, id_oferta_ativa):
             if not verificar_navegador(crmx):
                 crmx = reiniciar_navegador(crmx, 'crmx')
 
-        # Espera 1 minuto antes da próxima verificação
         time.sleep(60)
 
 
 
 if __name__ == "__main__":
-    # Coletando os argumentos passados pelo enviador
     corretor_id = sys.argv[1] 
     repeticoes = int(sys.argv[2]) 
-    tipo = sys.argv[1] 
+    tipo = sys.argv[3] 
+    idoferta_ativa = sys.argv[4]
 
     # Executando o processo com os dados recebidos
-    start(corretor_id, repeticoes, tipo)
+    start(corretor_id, repeticoes, tipo, idoferta_ativa)

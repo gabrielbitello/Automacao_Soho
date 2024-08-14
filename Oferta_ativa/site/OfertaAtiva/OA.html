@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soho</title>
+    <link rel="stylesheet" href="Assets/Css/reset.css">
+    <link rel="stylesheet" href="Assets/Css/style.css">
+</head>
+<body>
+    <header>
+
+    </header> 
+
+    <main>
+        <form method="post" id="meuFormulario" action="enviar.php">
+            <select name="mensagem" id="opcoesSelect">
+                <option value="Neutro">Neutro</option>
+                <!--<option value="Poty">Poty</option>
+                <option value="Hike">Hike</option>-->
+            </select>
+            <!--<input type="number" id="inputNumero" name="numero" min="1" max="500">
+            <input type="checkbox" name="PE"  id="checkboxPessoasEspecificas">
+            <input type="text" name="Numero_telefone"  id="Numero_telefone"style="display:none;">
+            <input type="text" name="Nome_cliente" id="Nome_cliente" style="display:none;" placeholder="Nome">
+            <input type="text" name="Nome" id="Nome" style="display:none;" placeholder="Indicador">-->
+            <button type="submit">OK</button>
+        </form>
+    </main>
+    <footer>
+
+    </footer>
+
+    <script>
+        document.getElementById("checkboxPessoasEspecificas").addEventListener("change", function() {
+            var inputNumero = document.getElementById("inputNumero");
+            var Numero_telefone = document.getElementById("Numero_telefone"); // Ajuste para referenciar corretamente
+            var opcoesSelect = document.getElementById("opcoesSelect");
+            var Nome_cliente = document.getElementById("Nome_cliente");
+            var Nome = document.getElementById("Nome");
+
+            if (this.checked) {
+                inputNumero.style.display = "none";
+                Nome_cliente.style.display = "block"; // Mostra o input "Nome_cliente" quando a checkbox é marcada
+                Numero_telefone.style.display = "block"; // Mostra o input de texto quando a checkbox é marcada
+                // Adiciona a opção extra se ainda não existir
+                if (!document.querySelector("#opcaoEspecifica")) {
+                    var opcaoEspecifica = new Option("Opção Específica", "opcaoEspecifica", false, false);
+                    opcaoEspecifica.id = "opcaoEspecifica"; // Adiciona um ID para facilitar a verificação posterior
+                    opcoesSelect.add(opcaoEspecifica);
+                }
+            } else {
+                inputNumero.style.display = "block";
+                Numero_telefone.style.display = "none"; // Esconde o input de texto quando a checkbox é desmarcada
+                Nome_cliente.style.display = "none"; // Esconde o input "Nome_cliente" quando a checkbox é desmarcada
+                // Remove a opção extra se o checkbox for desmarcado
+                var opcaoEspecifica = document.querySelector("#opcaoEspecifica");
+                if (opcaoEspecifica) {
+                    opcaoEspecifica.remove();
+                }
+                Nome.style.display = "none";
+            }
+        });
+
+        document.getElementById("opcoesSelect").addEventListener("change", function() {
+            var Nome = document.getElementById("Nome");
+            if (this.value === "opcaoEspecifica") {
+                Nome.style.display = "block";
+            } else {
+                Nome.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

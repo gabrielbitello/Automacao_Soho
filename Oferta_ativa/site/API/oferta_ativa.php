@@ -11,17 +11,18 @@ if ($conn->connect_error) {
     die(json_encode(array("error" => "Falha na conexão: " . $conn->connect_error)));
 }
 
+$id = $_POST['id'] ?? '';
+
 $conn->set_charset("utf8");
 
-$sql = "SELECT mensagem FROM ofertas_ativa WHERE ativa = 1 LIMIT 1";
-$result = $conn->query($sql);
+$sql = "SELECT idofertas_ativa, total, pessoa, numero, nome_pessoa, nome_passou, ID_Corretor, restante FROM ofertas_ativa WHERE idofertas_ativa = ?";
+$result = $conn->prepare($sql_data);
+$result->bind_param("s", $id);
+$result->execute();
+$resultado_data = $result->get_result()->fetch_assoc();
 
 if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $response = array("mensagem" => $row['mensagem']);
-} else {
-    $response = array("mensagem" => "Nenhuma oferta ativa encontrada");
-}
+    $response = array($resultado_data);
 
 echo json_encode($response);
 

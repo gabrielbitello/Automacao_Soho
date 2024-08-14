@@ -12,7 +12,7 @@ import Mensagem
 
 
 
-def contato_oferta_ativa(loop, mensagem_oferta, whatsapp, crmx, deu_erro):
+def contato_oferta_ativa(loop, mensagem_oferta, whatsapp, crmx, deu_erro, id_oferta_ativa, id):
     n_loop = int(loop)
     print (loop)
     # Inicia o processo de contato
@@ -90,7 +90,7 @@ def contato_oferta_ativa(loop, mensagem_oferta, whatsapp, crmx, deu_erro):
                 time.sleep(3)
 
                 opcao_select = "Pediu Informações"
-                funcoes.cadastrar_cliente(nome_cliente, primeiro_nome, numero_cliente, numero_formatado, 1, mensagem)
+                funcoes.cadastrar_cliente(nome_cliente, primeiro_nome, numero_cliente, numero_formatado, 1, mensagem, id)
 
                 
                 time.sleep(6)
@@ -108,7 +108,7 @@ def contato_oferta_ativa(loop, mensagem_oferta, whatsapp, crmx, deu_erro):
             except NoSuchElementException:
                 # Se o elemento não for encontrado, entra no except
                 opcao_select = "Telefone Inválido"
-                funcoes.cadastrar_cliente(nome_cliente, primeiro_nome, numero_cliente, numero_formatado, 0, mensagem)
+                funcoes.cadastrar_cliente(nome_cliente, primeiro_nome, numero_cliente, numero_formatado, 0, mensagem, id)
                 whatsapp.find_element(By.XPATH, '//*[@id="app"]/div/div[2]/div[2]/div[1]/span/div/span/div/header/div/div[1]/div/span').click()
 
             # --------------------------------------------
@@ -122,5 +122,6 @@ def contato_oferta_ativa(loop, mensagem_oferta, whatsapp, crmx, deu_erro):
         print("Executando a oferta ativa")
         print(f"x antes: {n_loop}")
         n_loop = n_loop - 1
+        funcoes.atualizar_restante(id_oferta_ativa, n_loop)
         print(f"x depos: {n_loop}")
         time.sleep(1)

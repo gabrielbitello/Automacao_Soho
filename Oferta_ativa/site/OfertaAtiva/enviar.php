@@ -1,9 +1,15 @@
 <?php
-include 'config.php'; // Incluir o arquivo de configuração
+session_start();
+include '../Global/config.php';
 
-// Verifica a conexão
-if ($conn->connect_error) {
-    die("Falha na conexão: " . $conn->connect_error);
+$id = $_SESSION['id'];
+
+// Verifica a conexão usando PDO
+try {
+    $pdo = new PDO($dsn, $db_user, $db_pass, $options);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Falha na conexão: " . $e->getMessage());
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -14,9 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Numero_telefone = isset($_POST['Numero_telefone']) ? $_POST['Numero_telefone'] : null;
     $Nome_cliente = isset($_POST['Nome_cliente']) ? $_POST['Nome_cliente'] : null;
     $Nome = isset($_POST['Nome']) ? $_POST['Nome'] : null;
-    $ativa = 1; // Exemplo de valor fixo para o campo ativa
-    $pessoa = 1; // Exemplo de valor fixo para o campo pessoa
-    $h_registro = date("Y-m-d H:i:s"); // Registro do horário atual
+    $ativa = 1; 
+    $pessoa = 1; 
+    $h_registro = date("Y-m-d H:i:s"); 
 
     // Validação básica
     $erros = [];
@@ -44,29 +50,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Processamento dos dados
     if ($PE) {
         // Lógica para quando Pessoas Específicas está marcado
-        $sql = "INSERT INTO ofertas_ativa (total, ativa, mensagem, pessoa, numero, nome_pessoa, nome_passou, h_registro) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("iissssss", $numero, $ativa, $mensagem, $pessoa, $Numero_telefone, $Nome_cliente, $Nome, $h_registro);
+        $sql = "INSERT INTO ofertas_ativa (total, ativa, mensagem, pessoa, numero, nome_pessoa, nome_passou, h_registro, ID_Corretor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$numero, $ativa, $mensagem, $pessoa, $Numero_telefone, $Nome_cliente, $Nome, $h_registro, $id]);
     } else {
         // Lógica para quando Pessoas Específicas não está marcado
-        $sql = "INSERT INTO ofertas_ativa (total, ativa, mensagem, h_registro) VALUES (?, ?, ?, ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("iiss", $numero, $ativa, $mensagem, $h_registro);
+        $sql = "INSERT INTO ofertas_ativa (total, ativa, mensagem, restante, h_registro) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$numero, $ativa, $mensagem, $numero, $h_registro]);
     }
 
-    if ($stmt->execute()) {
+    if ($stmt) {
         echo "<p>Formulário enviado com sucesso!</p>";
     } else {
-        echo "<p>Erro ao enviar formulário: " . $stmt->error . "</p>";
+        echo "<p>Erro ao enviar formulário: " . $stmt->errorInfo()[2] . "</p>";
     }
 
     header("Refresh: 8; URL=index.html");
-    $stmt->close();
 } else {
     // Redireciona de volta para o formulário se o acesso não for via POST
     header("Location: index.html");
     exit;
 }
-
-$conn->close();
 ?>
