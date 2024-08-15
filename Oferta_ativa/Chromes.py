@@ -72,6 +72,7 @@ def iniciar_whatsapp(ID_corretor):
         funcoes.atualizar_cod_corretor(ID_corretor, cod)
         while funcoes.elemento_existe(whatsapp, '/html/body/div[2]/div/div/div[2]/div[3]/div[1]/div/div/div[2]/div/div/div/div[8]/span') == True:
             time.sleep(5)
+        funcoes.att_StatusWhatsapp(ID_corretor)
     return whatsapp
 
 def iniciar_crmx(ID_corretor):

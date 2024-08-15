@@ -1,5 +1,6 @@
 import time
 import sys
+import os
 from selenium.common.exceptions import NoSuchWindowException
 
 import funcoes
@@ -7,8 +8,7 @@ import envio_de_mensagens
 import envio_de_mensagem_expecifica
 import Chromes
 
-whatsapp = None
-crmx = None
+
 
 
 print ("Iniciando o processo de contato...")
@@ -38,20 +38,27 @@ def verificar(id):
     
 
 def start (id, Nloop, tipo, id_oferta_ativa):
+    whatsapp = Chromes.iniciar_whatsapp(id)
+    crmx = Chromes.iniciar_crmx(id)
+
     deu_erro = False
     while verificar(id_oferta_ativa):
 
+        if not verificar_navegador(whatsapp):
+            print("WhatsApp foi fechado. Reiniciando...")
+            whatsapp = reiniciar_navegador(whatsapp, 'whatsapp', tipo, id)
+
+        if not verificar_navegador(crmx):
+            print("CRMX foi fechado. Reiniciando...")
+            crmx = Chromes.iniciar_crmx(id)
+
         try:
             if tipo == 1:
-                whatsapp = Chromes.iniciar_whatsapp(id)
-                crmx = Chromes.iniciar_crmx(id)
                 print(f"Existem {Nloop} ofertas ativas. Iniciando o processo de contato...")
                 envio_de_mensagens.contato_oferta_ativa(Nloop, funcoes.Mensagem_ofertas_ativas(), whatsapp, crmx, deu_erro, id_oferta_ativa, id)
                 funcoes.atualizar_h_termino()
             else:
                 if tipo == 2:
-                    whatsapp = Chromes.iniciar_whatsapp(id)
-                    crmx = Chromes.iniciar_crmx(id)
                     envio_de_mensagem_expecifica.contato_mensagem(funcoes.buscar_ofertas_ativas()[1], funcoes.buscar_ofertas_ativas()[2], funcoes.buscar_ofertas_ativas()[3], funcoes.Mensagem_ofertas_ativas(), whatsapp)
                     funcoes.atualizar_h_termino()
                 else:
@@ -78,5 +85,6 @@ if __name__ == "__main__":
     # Executando o processo com os dados recebidos
     start(int(corretor_id), int(repeticoes), int(tipo), int(idoferta_ativa))
     funcoes.atualizar_h_termino()
-    time.sleep(12)
     sys.exit()
+    time.sleep(6)
+    os.system('taskkill /F /IM cmd.exe')

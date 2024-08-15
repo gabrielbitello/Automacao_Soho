@@ -48,7 +48,7 @@ try {
         }
 
         if (!$PE && (is_null($numero) || $numero < 1 || $numero > 500)) {
-            $erros[] = "O número deve estar entre 1 e 500.";
+            $erros[] = "O número deve estar entre 1 e 350.";
         }
 
         // Exibe erros, se houver
@@ -60,10 +60,32 @@ try {
             exit;
         }
 
+        // Verifica o limite diário de ofertas ativas
+        $dataAtual = date("Y-m-d");
+        $stmt = $pdo->prepare("
+            SELECT SUM(total) AS total_ofertas
+            FROM ofertas_ativa
+            WHERE ID_Corretor = :id AND DATE(h_registro) = :dataAtual
+        ");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':dataAtual', $dataAtual, PDO::PARAM_STR);
+        $stmt->execute();
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $total_ofertas = $resultado['total_ofertas'] ? $resultado['total_ofertas'] : 0;
+        $limite_diario = 100;
+        $disponivel = $limite_diario - $total_ofertas;
+
+        if ($numero > $disponivel) {
+            echo "<p style='color: red;'>Você não pode enviar mais $numero ofertas hoje. Você ainda tem $disponivel ofertas disponíveis no limite diário.</p>";
+            echo "<a href='index.html'>Voltar</a>";
+            exit();
+        }
+
         // Processamento dos dados
         if ($PE) {
             // Lógica para quando Pessoas Específicas está marcado
-            $sql = "INSERT INTO ofertas_ativa (total, ativa, mensagem, pessoa, numero, nome_pessoa, nome_passou, h_registro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO ofertas_ativa (total, ativa, mensagem, pessoa, numero, nome_pessoa, nome_passou, h_registro, ID_Corretor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$numero, $ativa, $mensagem, $pessoa, $Numero_telefone, $Nome_cliente, $Nome, $h_registro, $id]);
         } else {
@@ -74,7 +96,15 @@ try {
         }
 
         if ($stmt) {
+            // Atualiza a quantidade de ofertas após o envio
+            $total_ofertas += $numero;
+            $disponivel = $limite_diario - $total_ofertas;
             echo "<p>Formulário enviado com sucesso!</p>";
+            if ($disponivel > 0) {
+                echo "<p>Você ainda pode enviar mais $disponivel ofertas hoje.</p>";
+            } else {
+                echo "<p>Você atingiu o limite diário de ofertas.</p>";
+            }
         } else {
             echo "<p>Erro ao enviar formulário: " . $stmt->errorInfo()[2] . "</p>";
         }
@@ -82,7 +112,7 @@ try {
     } else {
         // Redireciona de volta para o formulário se o acesso não for via POST
         header("Location: index.html");
-        exit;
+        exit();
     }
 
     // Redireciona para OA.html se tudo estiver ok

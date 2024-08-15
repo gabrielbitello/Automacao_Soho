@@ -228,3 +228,16 @@ def verificar_oferta_ativa(id):
         print(f"Erro ao obter oferta_ativa: {e}")
         logging.error(f"Erro ao obter oferta_ativa: {e}")
         return {"error": "Erro ao obter oferta_ativa"}
+
+def att_StatusWhatsapp(id):
+    url = "https://soho.bitello.cloud/API/att_whatsapp.php"
+    data = {'id': id}
+    
+    try:
+        response = requests.post(url, data=data)
+        if response.status_code != 200:
+            print(f"Erro ao atualizar StatusWhatsapp: {response.status_code}")
+            logging.error(f"Erro ao atualizar StatusWhatsapp: {response.status_code}")
+    except Exception as e:
+        print(f"Erro ao atualizar StatusWhatsapp: {e}")
+        logging.error(f"Erro ao atualizar StatusWhatsapp: {e}")
