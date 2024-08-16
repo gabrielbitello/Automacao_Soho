@@ -37,7 +37,7 @@ def verificar(id):
         return False
     
 
-def start (id, Nloop, tipo, id_oferta_ativa):
+def start (id, Nloop, tipo, id_oferta_ativa, Mensagem):
     whatsapp = Chromes.iniciar_whatsapp(id)
     crmx = Chromes.iniciar_crmx(id)
 
@@ -55,11 +55,11 @@ def start (id, Nloop, tipo, id_oferta_ativa):
         try:
             if tipo == 1:
                 print(f"Existem {Nloop} ofertas ativas. Iniciando o processo de contato...")
-                envio_de_mensagens.contato_oferta_ativa(Nloop, funcoes.Mensagem_ofertas_ativas(), whatsapp, crmx, deu_erro, id_oferta_ativa, id)
+                envio_de_mensagens.contato_oferta_ativa(Nloop, Mensagem, whatsapp, crmx, deu_erro, id_oferta_ativa, id)
                 funcoes.atualizar_h_termino()
             else:
                 if tipo == 2:
-                    envio_de_mensagem_expecifica.contato_mensagem(funcoes.buscar_ofertas_ativas()[1], funcoes.buscar_ofertas_ativas()[2], funcoes.buscar_ofertas_ativas()[3], funcoes.Mensagem_ofertas_ativas(), whatsapp)
+                    envio_de_mensagem_expecifica.contato_mensagem(funcoes.buscar_ofertas_ativas()[1], funcoes.buscar_ofertas_ativas()[2], funcoes.buscar_ofertas_ativas()[3], Mensagem, whatsapp)
                     funcoes.atualizar_h_termino()
                 else:
                     print("Não existem mensagens específicas ativas no momento.")
@@ -72,7 +72,7 @@ def start (id, Nloop, tipo, id_oferta_ativa):
             if not verificar_navegador(crmx):
                 crmx = reiniciar_navegador(crmx, 'crmx')
 
-        time.sleep(60)
+        time.sleep(30)
 
 
 
@@ -81,9 +81,10 @@ if __name__ == "__main__":
     repeticoes = int(sys.argv[2]) 
     tipo = sys.argv[3] 
     idoferta_ativa = sys.argv[4]
+    Mensagem = sys.argv[5]
 
     # Executando o processo com os dados recebidos
-    start(int(corretor_id), int(repeticoes), int(tipo), int(idoferta_ativa))
+    start(int(corretor_id), int(repeticoes), int(tipo), int(idoferta_ativa), Mensagem)
     funcoes.atualizar_h_termino()
     sys.exit()
     time.sleep(6)

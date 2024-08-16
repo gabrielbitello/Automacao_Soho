@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../../Global/config.php';
+include '../../../Global/config.php';
 
 // Verifica se a sessão foi iniciada e se o ID do corretor está definido
 if (!isset($_SESSION['user_id'])) {

@@ -21,7 +21,7 @@ if (!isset($_GET['id'])) {
 $id = intval($_GET['id']);
 
 // Consulta SQL
-$sql = "SELECT `idCorretores`, `Nome`, `Numero`, `EmailCRMX`, `SenhaCRMX`, `StatusWhatsapp`, `StatusGeral`, `Plano` FROM `Corretores` WHERE `idCorretores` = ?";
+$sql = "SELECT `idCorretores`, `Nome`, `Numero`, `EmailCRMX`, `SenhaCRMX`, `StatusWhatsapp`, `StatusGeral`, `Plano`, `Genero`  FROM `Corretores` WHERE `idCorretores` = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $id);
 $stmt->execute();

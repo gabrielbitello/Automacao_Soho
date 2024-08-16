@@ -27,10 +27,10 @@ date_default_timezone_set('America/Sao_Paulo');
 $data_atual = date('Y-m-d H:i:s');
 
 // Query SQL para inserir os dados na tabela oferta_ativa_Clientes
-$sql = "INSERT INTO oferta_ativa_Clientes (Nome, Nome_F, Numero, Numero_F, Status, Mensagem, Data, Retorno, Corretor) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, 0, ?)";
+$sql = "INSERT INTO oferta_ativa_Clientes (Nome, Nome_F, Numero, Numero_F, Status, Mensagem, Data, Corretor) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sssssss", $nome, $nome_f, $numero, $numero_f, $status, $mensagem, $data_atual, $ID);
+$stmt->bind_param("ssssssss", $nome, $nome_f, $numero, $numero_f, $status, $mensagem, $data_atual, $ID);
 
 if ($stmt->execute()) {
     $response = array("success" => "Cliente cadastrado com sucesso.");

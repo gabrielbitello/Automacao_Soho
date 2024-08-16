@@ -10,6 +10,7 @@ import pyperclip
 import funcoes
 import Mensagem
 
+Botao_atender_cliente = '//*[@id="info-cliente"]/div[2]/div/div[3]/div/div[1]/button'
 
 
 def contato_oferta_ativa(loop, mensagem_oferta, whatsapp, crmx, deu_erro, id_oferta_ativa, id):
@@ -19,8 +20,14 @@ def contato_oferta_ativa(loop, mensagem_oferta, whatsapp, crmx, deu_erro, id_ofe
     while n_loop > 0:
 
         if deu_erro == False:
-            time.sleep(2)
-            crmx.find_element(By.XPATH, '//*[@id="info-cliente"]/div[2]/div/div[3]/div/div[1]/button').click()  # Atender cliente
+            time.sleep(1)
+            while True:
+                try:
+                    element = crmx.find_element(By.XPATH, Botao_atender_cliente)
+                    element.click()
+                    break
+                except NoSuchElementException:
+                    time.sleep(1)
             deu_erro = False
 
         time.sleep(2)
@@ -62,15 +69,13 @@ def contato_oferta_ativa(loop, mensagem_oferta, whatsapp, crmx, deu_erro, id_ofe
 
             try:
 
-                mensagem = Mensagem.Mensagem(primeiro_nome, mensagem_oferta, 0, funcoes.obter_corretor(id)[0]['Nome'])
+                mensagem = Mensagem.Mensagem(primeiro_nome, mensagem_oferta, 0, funcoes.obter_corretor(id)[0]['Nome'], funcoes.obter_corretor(id)[0]['Genero'])
 
                 time.sleep(round(random.uniform(3, 5), 1))
 
                 whatsapp.find_element(By.XPATH, '//*[@id="app"]/div/div[2]/div[2]/div[1]/span/div/span/div/div[2]/div[2]').click()
 
                 time.sleep(round(random.uniform(3, 5), 1))
-
-                pyperclip.copy(mensagem)
 
                 # Encontra o campo de mensagem
                 campo_mensagem = whatsapp.find_element(By.XPATH, '/html/body/div[1]/div/div/div[2]/div[4]/div/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[1]')
@@ -79,6 +84,10 @@ def contato_oferta_ativa(loop, mensagem_oferta, whatsapp, crmx, deu_erro, id_ofe
                 campo_mensagem.click()
 
                 time.sleep(round(random.uniform(3, 5), 1))
+
+                pyperclip.copy(mensagem)
+
+                time.sleep(0.1)
 
                 acoes = ActionChains(whatsapp)
                 acoes.key_down(Keys.CONTROL).send_keys('v').key_up(Keys.CONTROL).perform()
