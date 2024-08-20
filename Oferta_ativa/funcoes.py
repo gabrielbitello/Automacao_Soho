@@ -10,7 +10,7 @@ import re
 import logging    
 
 
-logging.basicConfig(filename='app_errors.log', level=logging.ERROR, 
+logging.basicConfig(filename='.Logs/app_errors.log', level=logging.ERROR, 
                     format='%(asctime)s %(levelname)s:%(message)s')
 
 def formatar_telefone(numero):
@@ -61,7 +61,7 @@ def clique_e_envie(nav2, xpath, texto, enter=False, simular_shift_enter=False):
 
 def buscar_ofertas_ativas():
     try:
-        response = requests.get('https://soho.bitello.cloud/API/buscar_oferta_ativa.php')
+        response = requests.get('https://soho.bitello.cloud/API/OA/buscar_oferta_ativa.php')
         if response.status_code == 200:
             resultado = response.json()
             return tuple(resultado)
@@ -75,7 +75,7 @@ def buscar_ofertas_ativas():
 
 def Mensagem_ofertas_ativas():
     try:
-        response = requests.get('https://soho.bitello.cloud/API/mensagem_oferta_ativa.php')
+        response = requests.get('https://soho.bitello.cloud/API/OA/mensagem_oferta_ativa.php')
         if response.status_code == 200:
             resultado = response.json()
             return resultado.get('mensagem', 'Nenhuma oferta ativa encontrada')
@@ -89,7 +89,7 @@ def Mensagem_ofertas_ativas():
 
 def atualizar_h_termino():
     try:
-        response = requests.get('https://soho.bitello.cloud/API/atualiza_h_termina.php')
+        response = requests.get('https://soho.bitello.cloud/API/OA/atualiza_h_termina.php')
         if response.status_code == 200:
             resultado = response.json()
             print(resultado.get('success', 'Erro ao atualizar o horário de término'))
@@ -100,7 +100,7 @@ def atualizar_h_termino():
         logging.error(f"Erro ao atualizar o horário de término: {e}")
 
 def cadastrar_cliente(nome_cliente, primeiro_nome, numero_cliente, numero_formatado, status, mensagem, ID):
-    url = 'https://soho.bitello.cloud/API/cadastrar_cliente.php'
+    url = 'https://soho.bitello.cloud/API/OA/cadastrar_cliente.php'
     data = {
         'nome': nome_cliente,
         'nome_f': primeiro_nome,
@@ -123,7 +123,7 @@ def cadastrar_cliente(nome_cliente, primeiro_nome, numero_cliente, numero_format
         logging.error(f"Erro ao cadastrar cliente: {e}")
 
 def verificar_numero_existente(numero):
-    url = 'https://soho.bitello.cloud/API/verificar_numero_existente.php'
+    url = 'https://soho.bitello.cloud/API/OA/verificar_numero_existente.php'
     data = {'numero': numero}
     try:
         response = requests.post(url, data=data)
@@ -145,7 +145,7 @@ def remover_caracteres_nao_alfabeticos(nome):
     return nome_limpo
 
 def obter_corretor(id_corretor):
-    url = "https://soho.bitello.cloud/API/perfil_corretor.php"
+    url = "https://soho.bitello.cloud/API/OA/perfil_corretor.php"
     params = {'id': id_corretor}
     
     try:
@@ -163,7 +163,7 @@ def obter_corretor(id_corretor):
         return {"error": "Erro ao obter corretor"}
 
 def atualizar_cod_corretor(id_corretor, cod):
-    url = "https://soho.bitello.cloud/API/cod_whatsapp.php"
+    url = "https://soho.bitello.cloud/API/OA/cod_whatsapp.php"
     data = {'id': id_corretor, 'cod': cod}
     
     try:
@@ -183,7 +183,7 @@ def elemento_existe(driver, xpath):
         return False
 
 def atualizar_restante(id, novo_restante):
-    url = 'https://soho.bitello.cloud/API/att_restante.php'
+    url = 'https://soho.bitello.cloud/API/OA/att_restante.php'
     data = {'id': id, 'restante': novo_restante}
     try:
         response = requests.post(url, data=data)
@@ -201,7 +201,7 @@ def atualizar_restante(id, novo_restante):
 
 def att_status():
     try:
-        response = requests.get('https://soho.bitello.cloud/API/att_status.php')
+        response = requests.get('https://soho.bitello.cloud/API/OA/att_status.php')
         if response.status_code == 200:
             resultado = response.json()
             print(resultado.get('success', 'Erro ao atualizar o status'))
@@ -212,7 +212,7 @@ def att_status():
         logging.error(f"Erro ao atualizar o status: {e}")
 
 def verificar_oferta_ativa(id):
-    url = "https://soho.bitello.cloud/API/oferta_ativa.php"
+    url = "https://soho.bitello.cloud/API/OA/oferta_ativa.php"
     params = {'id': id}
     
     try:
@@ -230,7 +230,7 @@ def verificar_oferta_ativa(id):
         return {"error": "Erro ao obter oferta_ativa"}
 
 def att_StatusWhatsapp(id):
-    url = "https://soho.bitello.cloud/API/att_whatsapp.php"
+    url = "https://soho.bitello.cloud/API/OA/att_whatsapp.php"
     data = {'id': id}
     
     try:
