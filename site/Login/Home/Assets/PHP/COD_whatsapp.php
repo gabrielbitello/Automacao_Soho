@@ -1,7 +1,9 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 function WatsAppCOD($UID){
-    session_start();
     require (ROOT_PATH . '/Global/config.php');
     $id = $_SESSION['user_id'];
 

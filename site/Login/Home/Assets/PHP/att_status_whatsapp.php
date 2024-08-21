@@ -1,7 +1,9 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 function Att_status_whatsapp($UID, $id) {
-    session_start();
     require (ROOT_PATH . '/Global/config.php');
     $pdo;
 

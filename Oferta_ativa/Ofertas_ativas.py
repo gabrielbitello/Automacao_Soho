@@ -86,6 +86,5 @@ if __name__ == "__main__":
     # Executando o processo com os dados recebidos
     start(int(corretor_id), int(repeticoes), int(tipo), int(idoferta_ativa), Mensagem)
     funcoes.atualizar_h_termino()
-    sys.exit()
     time.sleep(6)
     os.system('taskkill /F /IM cmd.exe')

@@ -241,3 +241,17 @@ def att_StatusWhatsapp(id):
     except Exception as e:
         print(f"Erro ao atualizar StatusWhatsapp: {e}")
         logging.error(f"Erro ao atualizar StatusWhatsapp: {e}")
+
+def buscar_ConectorW():
+    try:
+        response = requests.get('https://soho.bitello.cloud/API/OA/buscar_whatsapp.php')
+        if response.status_code == 200:
+            resultado = response.json()
+            return tuple(resultado)
+        else:
+            print(f"Erro ao buscar ConectorW: {response.status_code}")
+            return (0, 0)
+    except Exception as e:
+        print(f"Erro ao buscar ConectorW: {e}")
+        logging.error(f"Erro ao buscar ConectorW: {e}")
+        return (0, 0)
