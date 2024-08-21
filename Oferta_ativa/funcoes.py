@@ -8,10 +8,18 @@ import random
 import requests
 import re
 import logging    
+import os
 
 
-logging.basicConfig(filename='.Logs/app_errors.log', level=logging.ERROR, 
+log_directory = '.Logs'
+if not os.path.exists(log_directory):
+    os.makedirs(log_directory)
+
+# Configurar o logging
+log_file = os.path.join(log_directory, 'app_errors.log')
+logging.basicConfig(filename=log_file, level=logging.ERROR, 
                     format='%(asctime)s %(levelname)s:%(message)s')
+
 
 def formatar_telefone(numero):
     # Passo 1: Remover caracteres não numéricos, exceto o sinal de mais (+) no início

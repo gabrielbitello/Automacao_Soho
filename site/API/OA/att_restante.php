@@ -1,5 +1,5 @@
 <?php
-include '../../Global/Config.php';
+require (ROOT_PATH . '/Global/config.php');
 // Cria a conexão
 $conn = new mysqli($host, $db_user, $db_pass, $db);
 
