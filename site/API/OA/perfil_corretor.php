@@ -1,5 +1,5 @@
 <?php
-require (ROOT_PATH . '/Global/config.php');
+require '../../Global/config.php';
 
 header('Content-Type: application/json; charset=utf-8');
 

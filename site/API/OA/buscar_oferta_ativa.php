@@ -1,7 +1,7 @@
 <?php
-require (ROOT_PATH . '/Global/config.php');
+require '../../Global/config.php';
 
-header('Content-Type: application/json charset=utf-8');
+header('Content-Type: application/json; charset=utf-8');
 
 // Cria a conexão
 $conn = new mysqli($host, $db_user, $db_pass, $db);

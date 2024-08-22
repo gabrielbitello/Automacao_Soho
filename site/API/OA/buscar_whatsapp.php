@@ -1,7 +1,7 @@
 <?php
-require (ROOT_PATH . '/Global/config.php');
+require '../../Global/config.php';
 
-header('Content-Type: application/json charset=utf-8');
+header('Content-Type: application/json; charset=utf-8');
 
 // Cria a conexão
 $conn = new mysqli($host, $db_user, $db_pass, $db);
@@ -16,8 +16,9 @@ $conn->set_charset("utf8");
 $sql = "SELECT IdCorretor, UID FROM Whatsapp WHERE Status = 1 AND COD = NULL ORDER BY idWhatsapp ASC LIMIT 1";
 $result = $conn->query($sql);
 
+$row = $result->fetch_assoc();
 
-$response = array(1, $row['IdCorretor'], $row['UID']);
+$response = array($row['IdCorretor'], $row['UID']);
 
 
 echo json_encode($response);

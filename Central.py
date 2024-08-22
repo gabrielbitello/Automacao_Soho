@@ -36,8 +36,8 @@ while True:
 
     # Verifica se tem pedido de login whatsapp
     if funcoes.buscar_ConectorW() != []:
-        corretor_id = funcoes.buscar_ConectorW()[0]['IdCorretor']
-        UID_cod = funcoes.buscar_ConectorW()[0]['UID']
+        corretor_id = funcoes.buscar_ConectorW()[0]
+        UID_cod = funcoes.buscar_ConectorW()[1]
         print(f"Corretor {corretor_id} precisa fazer login no WhatsApp.")
         executar_ConectarW(corretor_id, UID_cod)
         funcoes.att_status()
