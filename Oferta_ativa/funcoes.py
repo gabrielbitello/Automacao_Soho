@@ -170,9 +170,9 @@ def obter_corretor(id_corretor):
         logging.error(f"Erro ao obter corretor: {e}")
         return {"error": "Erro ao obter corretor"}
 
-def atualizar_cod_corretor(id_corretor, cod):
+def atualizar_cod_corretor(id_corretor, cod, UID_cod):
     url = "https://soho.bitello.cloud/API/OA/cod_whatsapp.php"
-    data = {'id': id_corretor, 'cod': cod}
+    data = {'id': id_corretor, 'cod': cod, 'UID_cod': UID_cod}
     
     try:
         response = requests.post(url, data=data)
@@ -263,3 +263,16 @@ def buscar_ConectorW():
         print(f"Erro ao buscar ConectorW: {e}")
         logging.error(f"Erro ao buscar ConectorW: {e}")
         return (0, 0)
+
+def att_StatusWhatsapp_cod(id, UID_cod):
+    url = "https://soho.bitello.cloud/API/OA/att_whatsapp.php"
+    data = {'id': id, 'UID_cod': UID_cod}
+    
+    try:
+        response = requests.post(url, data=data)
+        if response.status_code != 200:
+            print(f"Erro ao atualizar StatusWhatsapp_cod: {response.status_code}")
+            logging.error(f"Erro ao atualizar StatusWhatsapp_cod: {response.status_code}")
+    except Exception as e:
+        print(f"Erro ao atualizar StatusWhatsapp_cod: {e}")
+        logging.error(f"Erro ao atualizar StatusWhatsapp_cod: {e}")

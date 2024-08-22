@@ -19,9 +19,9 @@ $cod = $_POST['cod'];
 $UID = $_POST['UID_cod'];
 
 // Query SQL para atualizar o campo 'cod' na tabela Corretores
-$sql = "UPDATE Whatsapp SET COD = ? WHERE IdCorretor = ? AND UID = ?";
+$sql = "UPDATE Whatsapp SET Status = 0 WHERE IdCorretor = ? AND UID = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sis", $cod, $id, $UID);
+$stmt->bind_param("ss", $cod, $UID);
 
 if ($stmt->execute()) {
     $response = array("success" => "Cliente cadastrado com sucesso.");

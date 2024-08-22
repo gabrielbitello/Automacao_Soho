@@ -19,7 +19,7 @@ import os
 deu_erro = False
 canvas_xpath = '/html/body/div[2]/div/div/div[2]/div[3]/div[1]/div/div/div[2]/div/canvas' 
 
-def Conectar_WhatsApp(ID_corretor):
+def Conectar_WhatsApp(ID_corretor, UID_pedido):
     pasta = (f"whatsapp_{ID_corretor}")
     corretor = funcoes.obter_corretor(ID_corretor)
     
@@ -64,7 +64,7 @@ def Conectar_WhatsApp(ID_corretor):
         h = whatsapp.find_element(By.XPATH, '/html/body/div[2]/div/div/div[2]/div[3]/div[1]/div/div/div[2]/div/div/div/div[8]/span').text
         # 3 a 4m para mudar
         cod = a + b + c + d + e + f + g + h
-        funcoes.atualizar_cod_corretor(ID_corretor, cod)
+        funcoes.atualizar_cod_corretor(ID_corretor, cod, UID_pedido)
         while funcoes.elemento_existe(whatsapp, '/html/body/div[2]/div/div/div[2]/div[3]/div[1]/div/div/div[2]/div/div/div/div[8]/span') == True:
             time.sleep(5)
         funcoes.att_StatusWhatsapp(ID_corretor)
