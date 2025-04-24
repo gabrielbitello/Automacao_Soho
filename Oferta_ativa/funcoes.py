@@ -258,14 +258,14 @@ def buscar_ConectorW():
             return tuple(resultado)
         else:
             print(f"Erro ao buscar ConectorW: {response.status_code}")
-            return (0, 0)
+            return (0, 0, 0)
     except Exception as e:
         print(f"Erro ao buscar ConectorW: {e}")
         logging.error(f"Erro ao buscar ConectorW: {e}")
         return (0, 0)
 
 def att_StatusWhatsapp_cod(id, UID_cod):
-    url = "https://soho.bitello.cloud/API/OA/att_whatsapp.php"
+    url = "https://soho.bitello.cloud/API/OA/att_status_w.php"
     data = {'id': id, 'UID_cod': UID_cod}
     
     try:

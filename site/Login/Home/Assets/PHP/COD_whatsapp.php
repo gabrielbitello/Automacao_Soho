@@ -7,7 +7,7 @@ function WatsAppCOD($UID){
     require (ROOT_PATH . '/Global/config.php');
     $id = $_SESSION['user_id'];
 
-    $UID = uniqid($id . '_', true);
+    $UID = $_SESSION['UID'];
 
     try {
         // Conectar ao banco de dados usando PDO
@@ -16,11 +16,9 @@ function WatsAppCOD($UID){
 
         // Buscar o COD onde UID é igual ao dado e Status é igual a 1
         $stmt = $pdo->prepare("
-            SELECT COD
-            FROM soho_geral.Whatsapp
-            WHERE UID = :UID
+            SELECT COD FROM Whatsapp WHERE UID = :UID
         ");
-        $stmt->bindParam(':UID', $UID, PDO::PARAM_STR);
+        $stmt ->bindParam(':UID', $UID, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             $result = $stmt->fetch(PDO::FETCH_ASSOC);

@@ -15,7 +15,6 @@ $conn->set_charset("utf8");
 
 // Obtém os dados do POST
 $id = $_POST['id'];
-$cod = $_POST['cod'];
 $UID = $_POST['UID_cod'];
 
 // Query SQL para atualizar o campo 'cod' na tabela Corretores
@@ -24,9 +23,9 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("ss", $cod, $UID);
 
 if ($stmt->execute()) {
-    $response = array("success" => "Cliente cadastrado com sucesso.");
+    $response = array("success" => "Status do cod_whatsapp atualizado.");
 } else {
-    $response = array("error" => "Erro ao cadastrar cliente: " . $stmt->error);
+    $response = array("error" => "Erro ao atualziar o status do cod_whatsapp: " . $stmt->error);
 }
 
 echo json_encode($response);

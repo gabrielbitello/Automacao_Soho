@@ -27,6 +27,7 @@ function RequestWatsAppCode($id_User) {
 
         if ($stmt->execute()) {
             echo 'Código de WhatsApp solicitado com sucesso';
+            $_SESSION['UID'] = $UID;
         } else {
             echo 'Falha ao solicitar o código de WhatsApp';
         }

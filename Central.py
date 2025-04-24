@@ -9,7 +9,7 @@ def executar_OfertaAtiva(corretor_id, repeticoes, tipo, idoferta_ativa, Mensagem
 
 def executar_ConectarW(corretor_id, UID_pedido):
     comando = f'start cmd /k "python Oferta_ativa/ConectorW.py {corretor_id} {UID_pedido}"'
-    print(f"Executando Oferta")
+    print(f"Executando Conector")
     os.system(comando)
 
 
@@ -36,7 +36,7 @@ while True:
             print("Não existem mensagens específicas ou ofertas ativas no momento.")
 
     # Verifica se tem pedido de login whatsapp
-    if Conector != [] and Conector[2] == 1:
+    if int(Conector[2]) == 1:
         funcoes.att_StatusWhatsapp_cod(Conector[0], Conector[1])
         corretor_id = Conector[0]
         UID_cod = Conector[1]
